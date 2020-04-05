@@ -14,6 +14,10 @@
     padding: 0px 16px;
     height: 64px;
   }
+
+  nav a:hover {
+    text-decoration: none;
+  }
   
   .nav-right {
     display: flex;
