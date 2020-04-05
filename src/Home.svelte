@@ -16,13 +16,12 @@
 </style>
 
 <div class="home">
-  <h3>Welcome!</h3>
   <div>
 
       <h1>This is an h1</h1>
       <h2>This is an h2</h2>
       <p>This is body Copy</p>
-
+      <code>$ sudo npm install noob-toobs lul <img src="./img/copy-to-clipboard.svg" alt="Copy to Clipboard Icon"> </code>
 
       <button class="primary hvr-ripple-out">Donate to Tor</button>
       <br>
