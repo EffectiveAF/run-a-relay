@@ -10,6 +10,7 @@
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    border-bottom: 1px solid #f0f0f0;
   }
   .nav-right {
     margin-left: auto;

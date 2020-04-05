@@ -1,6 +1,17 @@
 @import url('reset.css');
 @import url('fonts.css');
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --button-primary: #8E22C3;
+  --content-default: #000;
+  --content-inverted: #fff;
+}
+
 html, body {
   position: relative;
   width: 100%;
@@ -13,6 +24,30 @@ body {
   padding: 8px;
   box-sizing: border-box;
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+h1 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 110.18%;
+  color: #000000;
+}
+
+h2 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 110.18%;
+  color: #000000;
+}
+
+p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 32px;
+  color: #000000;
 }
 
 a {
@@ -35,11 +70,7 @@ label {
 input, button, select, textarea {
   font-family: inherit;
   font-size: inherit;
-  padding: 0.4em;
-  margin: 0 0 0.5em 0;
   box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 2px;
 }
 
 input:disabled {
@@ -51,19 +82,156 @@ input[type="range"] {
 }
 
 button {
-  color: #333;
-  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: row;
+  padding: 8px 24px;
+  color: var(--content-default);
+  box-shadow: 4px 2px 15px rgba(0, 0, 31, 0.16);
+  border-radius: 4px;
   outline: none;
+  border: none;
+  height: 46px;
+  cursor: pointer;
 }
+
 
 button:disabled {
   color: #999;
 }
 
 button:not(:disabled):active {
+  cursor: pointer;
   background-color: #ddd;
 }
 
 button:focus {
-  border-color: #666;
+  border-color: rgba(142, 34, 195, 0.9);
+}
+
+button.primary {
+  display: flex;
+  flex-direction: row;
+  padding: 8px 24px;
+  color: var(--content-inverted);
+  background-color: var(--button-primary);
+  box-shadow: 4px 2px 15px rgba(154, 154, 167, 0.16);
+  border-radius: 4px;
+}
+
+button.primary:hover {
+  cursor: pointer;
+  background-color: var(--button-primary);
+}
+
+button.primary:active {
+  cursor: pointer;
+  background-color: var(--button-primary);
+}
+
+button.secondary {
+  background: #FFFFFF;
+  box-shadow: 4px 2px 15px rgba(0, 0, 31, 0.16);
+  border-radius: 4px;
+}
+
+/* Primary Ripple Out Button Animation */
+@-webkit-keyframes hvr-ripple-out {
+  100% {
+    top: -6px;
+    right: -6px;
+    bottom: -6px;
+    left: -6px;
+    opacity: 0;
+  }
+}
+
+@keyframes hvr-ripple-out {
+  100% {
+    top: -5px;
+    right: -5px;
+    bottom: -5px;
+    left: -5px;
+    opacity: 0;
+  }
+}
+
+.hvr-ripple-out {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  
+  position: relative;
+}
+
+.hvr-ripple-out:before {
+  content: '';
+  position: absolute;
+  border: solid 6px var(--button-primary);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-animation-duration: 0.6s;
+  animation-duration: 0.6s;
+  border-radius: 4px;
+}
+
+.hvr-ripple-out:hover:before,
+.hvr-ripple-out:focus:before,
+.hvr-ripple-out:active:before {
+  -webkit-animation-name: hvr-ripple-out;
+  animation-name: hvr-ripple-out;
+}
+
+
+/* Secondary Ripple Out Button Animation */
+@-webkit-keyframes hvr-ripple-out-sec {
+  100% {
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    opacity: 0;
+  }
+}
+
+@keyframes hvr-ripple-out-sec {
+  100% {
+    top: -12px;
+    right: -12px;
+    bottom: -12px;
+    left: -12px;
+    opacity: 0;
+  }
+}
+
+.hvr-ripple-out-sec {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+}
+
+.hvr-ripple-out-sec:before {
+  content: '';
+  position: absolute;
+  border: solid 6px #fff;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  border-radius: 4px;
+}
+
+.hvr-ripple-out-sec:hover:before,
+.hvr-ripple-out-sec:focus:before,
+.hvr-ripple-out-sec:active:before {
+  -webkit-animation-name: hvr-ripple-out-sec;
+  animation-name: hvr-ripple-out-sec;
 }
