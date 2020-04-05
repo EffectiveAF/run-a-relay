@@ -2,3 +2,8 @@
 .nav-right button {
   margin-left: 16px;
 }
+
+/* Needed to style link to site title */
+nav > a > h1, h2, h3, h4 {
+  color: black;
+}

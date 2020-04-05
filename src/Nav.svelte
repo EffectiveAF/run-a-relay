@@ -33,9 +33,13 @@
 </style>
 
 <nav>
-  <Link to="/"><img src="/img/tor.svg" alt="Tor-esque logo (onion)" /></Link>
+  <Link to="/">
+    <img src="/img/tor.svg" alt="Tor-esque logo (onion)" />
+  </Link>
 
-  <h4>Run A Relay</h4>
+  <Link to="/">
+    <h4>Run A Relay</h4>
+  </Link>
 
   <div class="nav-right">
     <Link to="/about">
