@@ -25,11 +25,11 @@
   }
 
   .primary > .external-link-ctn {
-    background-color: white;
+    background-color: var(--content-inverted);
   }
 
   .secondary > .external-link-ctn {
-    background-color: black;
+    background-color: var(--content-default);
   }
 </style>
 
