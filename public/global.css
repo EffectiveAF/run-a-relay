@@ -1,3 +1,6 @@
+@import url('reset.css');
+@import url('fonts.css');
+
 html, body {
   position: relative;
   width: 100%;
