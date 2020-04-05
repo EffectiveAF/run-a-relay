@@ -5,6 +5,7 @@
   export let stepName = '';
 
   import Step from './Step.svelte';
+  import Code from './Code.svelte';
   import ExternalLink from './ExternalLink.svelte';
 </script>
 
@@ -45,4 +46,17 @@
       Hosting providers to consider: ...
     </p>
   </Step>
+
+
+  <Step slug="install-tor-daemon" title="Install Tor Daemon">
+    <p>
+      Commands to run:
+    </p>
+
+    <Code line="sudo apt-get install tor" />
+  </Step>
+
+  <!-- NOTE: When adding a new <Step>, remember to add its slug to the
+       end of ./slugOrder.js!
+  -->
 </div>

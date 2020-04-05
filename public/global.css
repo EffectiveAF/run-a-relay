@@ -52,25 +52,6 @@ p {
   color: #000000;
 }
 
-code {
-  display: flex;
-  background-color: #21262B;
-  height: 32px;
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 18px;
-  color: var(--content-inverted);
-  border-radius: 4px;
-  align-items: center;
-  padding: 0 16px;
-}
-
-code img {
-  margin-left: auto;
-}
-
 a {
   color: rgb(0, 100, 200);
   text-decoration: none;
