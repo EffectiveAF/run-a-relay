@@ -46,7 +46,11 @@
       <button class="secondary hvr-ripple-out-sec">About</button>
     </Link>
 
-    <ExternalButton href="https://donate.torproject.org/">
+    <ExternalButton href="https://github.com/EffectiveAF/run-a-relay">
+      GitHub Repo
+    </ExternalButton>
+
+    <ExternalButton primary href="https://donate.torproject.org/">
       Donate to Tor
     </ExternalButton>
   </div>

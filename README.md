@@ -47,6 +47,12 @@ npm run dev
 Then just visit [localhost:5000](http://localhost:5000/)!
 
 
+## Attribution
+
+- `public/img/External_link_font_awesome.svg`
+  - Font Awesome by Dave Gandy - https://fontawesome.github.com/Font-Awesome / CC BY-SA
+
+
 ## Donate to Tor
 
 https://donate.torproject.org/

@@ -1,11 +1,41 @@
 <script>
   export let href = '#';
+  export let primary = false;
+
+  const primaryClass = "primary hvr-ripple-out";
+  const secondaryClass = "secondary hvr-ripple-out-sec";
+
+  const btnClass = primary ? primaryClass : secondaryClass;
 
   import ExternalLink from './ExternalLink.svelte';
 </script>
 
+<style>
+  button {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .external-link-ctn {
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    mask: url(/img/External_link_font_awesome.svg) no-repeat center / contain;
+    -webkit-mask: url(/img/External_link_font_awesome.svg) no-repeat center / contain;
+  }
+
+  .primary > .external-link-ctn {
+    background-color: white;
+  }
+
+  .secondary > .external-link-ctn {
+    background-color: black;
+  }
+</style>
+
 <ExternalLink href={href}>
-  <button class="primary hvr-ripple-out">
+  <button class={btnClass}>
     <slot />
+    <div class="external-link-ctn"></div>
   </button>
 </ExternalLink>
