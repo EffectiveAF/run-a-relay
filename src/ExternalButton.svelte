@@ -2,12 +2,12 @@
   export let href = '#';
   export let primary = false;
 
+  import ExternalLink from './ExternalLink.svelte';
+
   const primaryClass = "primary hvr-ripple-out";
   const secondaryClass = "secondary hvr-ripple-out-sec";
 
   const btnClass = primary ? primaryClass : secondaryClass;
-
-  import ExternalLink from './ExternalLink.svelte';
 </script>
 
 <style>

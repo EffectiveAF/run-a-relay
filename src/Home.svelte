@@ -1,7 +1,12 @@
 <script>
   import { onMount } from 'svelte';
+  import { Link } from 'svelte-routing';
+
+  import { currentStepIndex } from './stores.js';
 
   onMount(async () => {
+    $currentStepIndex = 0;
+
     // Add remote state from metrics.torproject.org ?
   })
 </script>
@@ -12,21 +17,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
+  }
+  h1, h2 {
+    text-align: center;
+  }
+  h2 {
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 </style>
 
 <div class="home">
-  <div>
+  <h1>Thinking about running a Tor relay?</h1>
+  <h2>You're in the right place!</h2>
 
-      <h1>This is an h1</h1>
-      <h2>This is an h2</h2>
-      <p>This is body Copy</p>
-      <code>$ sudo npm install noob-toobs lul <img src="./img/copy-to-clipboard.svg" alt="Copy to Clipboard Icon"> </code>
-
-      <button class="primary hvr-ripple-out">Donate to Tor</button>
-      <br>
-      <br>
-      <button class="secondary hvr-ripple-out-sec">Label</button>
-    
-  </div>
+  <Link to="/step/intro">
+    <button class="primary hvr-ripple-out">Get Started</button>
+  </Link>
 </div>
