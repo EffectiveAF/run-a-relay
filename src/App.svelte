@@ -1,6 +1,4 @@
 <script>
-  export let appName;
-
   import { Router, Link, Route } from 'svelte-routing';
 
   import Home from './Home.svelte';
@@ -23,7 +21,7 @@
 
 <Router>
   <nav>
-    <h4>{appName}</h4>
+    <h4>Run A Relay</h4>
     <div class="nav-right">
       <a href="https://github.com/EffectiveAF/run-a-relay#faq" target="_blank" rel="nofollow noreferrer noopener">
         <button>RaR FAQ</button>
