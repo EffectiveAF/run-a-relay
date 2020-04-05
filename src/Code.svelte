@@ -22,7 +22,14 @@
     }
 
     cmdInput.setSelectionRange(0, 999999);
-    document.execCommand('copy');
+
+    const success = document.execCommand('copy');
+
+    if (success) {
+      console.log('Copied this command to clipboard!', cmdInput.value);
+    } else {
+      console.log('Copying command to clipboard failed :-(');
+    }
   }
 </script>
 
