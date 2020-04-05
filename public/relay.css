@@ -1,0 +1,4 @@
+/* Needed to style Nav's child components */
+.nav-right button {
+  margin-left: 16px;
+}
