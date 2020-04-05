@@ -133,7 +133,7 @@ button:focus {
 button.primary {
   color: var(--content-inverted);
   background-color: var(--button-primary);
-  box-shadow: 4px 2px 15px rgba(154, 154, 167, 0.16);
+  box-shadow: 4px 2px 15px rgba(154, 154, 167, 0.84);
   border-radius: 4px;
 }
 
