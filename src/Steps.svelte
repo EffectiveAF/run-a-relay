@@ -7,6 +7,7 @@
   import Step from './Step.svelte';
   import Code from './Code.svelte';
   import ExternalLink from './ExternalLink.svelte';
+  import PrevNextStepButtons from './PrevNextStepButtons.svelte';
 </script>
 
 <style>
@@ -56,7 +57,17 @@
     <Code line="sudo apt-get install tor" />
   </Step>
 
-  <!-- NOTE: When adding a new <Step>, remember to add its slug to the
-       end of ./slugOrder.js!
+
+  <!--
+    NOTE: When adding a new <Step>, remember to add its slug to ./slugOrder.js!
   -->
+
+
+  <Step slug="thank-you" title="Thank You!">
+    <p>
+      Thank you so much for taking action to make the Tor network faster and more scalable!
+    </p>
+  </Step>
+
+  <PrevNextStepButtons />
 </div>
