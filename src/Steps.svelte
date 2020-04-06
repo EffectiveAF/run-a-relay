@@ -7,6 +7,7 @@
   import Step from './Step.svelte';
   import Code from './Code.svelte';
   import ExternalLink from './ExternalLink.svelte';
+  import ExternalButton from './ExternalButton.svelte';
   import PrevNextStepButtons from './PrevNextStepButtons.svelte';
 </script>
 
@@ -66,6 +67,10 @@
   <Step slug="thank-you" title="Thank You!">
     <p>
       Thank you so much for taking action to make the Tor network faster and more scalable!
+    </p>
+
+    <p style="margin-top: 25px;">
+      <ExternalButton primary href="https://twitter.com/intent/tweet?text=I%20just%20spun%20up%20a%20new%20@TorProject%20relay!%20Simple%20instructions%20for%20running%20your%20own:%20https://RunARelay.com">Tweet about it</ExternalButton>
     </p>
   </Step>
 
