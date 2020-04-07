@@ -24,7 +24,7 @@ func main() {
 	log.SetLevel(log.ErrorLevel)
 
 	if *domain == "" {
-		log.Fatal("You must specify a -domain; e.g., -domain runarelay.com")
+		log.Fatal("You must specify a -domain; e.g., -domain runarelay.org")
 	}
 
 	// Start HTTP server listening for incoming HTTP traffic to *torDomain

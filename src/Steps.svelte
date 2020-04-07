@@ -88,7 +88,7 @@
     </p>
 
     <p style="margin-top: 25px;">
-      <ExternalButton primary href="https://twitter.com/intent/tweet?text=I%20just%20spun%20up%20a%20new%20@TorProject%20relay!%20Simple%20instructions%20for%20running%20your%20own:%20https://RunARelay.com">Tweet about it</ExternalButton>
+      <ExternalButton primary href="https://twitter.com/intent/tweet?text=I%20just%20spun%20up%20a%20new%20@TorProject%20relay!%20Simple%20instructions%20for%20running%20your%20own:%20https://RunARelay.org">Tweet about it</ExternalButton>
     </p>
   </Step>
 
