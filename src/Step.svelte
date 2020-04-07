@@ -33,7 +33,7 @@
 </style>
 
 {#if slugOrder[$currentStepIndex] === slug}
-  <div class="step" in:fly={{ x: 400, duration: 500 }}>
+  <div class="step" in:fly={{ x: 300, duration: 500 }}>
     <h3>
       Step {$currentStepIndex + 1}: {title}
     </h3>
