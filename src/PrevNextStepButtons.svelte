@@ -24,6 +24,17 @@
   }
 </style>
 
+<svelte:window on:popstate={(e) => {
+  // Re-sync URL displayed and currentStepIndex
+  const stepName = document.location.pathname
+        .slice('/step/'.length)
+        .match(/\w+/);
+  const stepIndex = slugOrder.indexOf(stepName);
+  if (stepIndex !== -1) {
+    $currentStepIndex = stepIndex;
+  }
+}} />
+
 <div class="prev-next">
   <div class="prev-ctn">
     {#if $currentStepIndex > 0}
