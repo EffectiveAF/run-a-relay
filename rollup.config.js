@@ -30,8 +30,7 @@ export default {
 			targets: [
 				{ src: 'node_modules/@ibm/plex/IBM-Plex-*', dest: 'public/fonts/IBM-Plex/' },
 				{ src: 'node_modules/open-sans-fonts/open-sans', dest: 'public/fonts/' }
-			],
-			verbose: true
+			]
 		}),
 
 		// If you have external dependencies installed from
