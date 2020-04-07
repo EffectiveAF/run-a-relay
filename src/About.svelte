@@ -1,5 +1,7 @@
 <script>
   import ExternalLink from './ExternalLink.svelte';
+
+  export let location;  // implicitly populated by router
 </script>
 
 <style>
