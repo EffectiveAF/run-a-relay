@@ -4,8 +4,19 @@
 
   import { fly } from 'svelte/transition';
 
-  import { currentStepIndex } from './stores.js';
+  import { currentStepIndex, previousStepIndices } from './stores.js';
   import slugOrder from './slugOrder.js';
+
+  const _forward = { x: 300, duration: 500 };
+  const _back = { x: -300, duration: 500 };
+
+  const transition = () => {
+    if ($currentStepIndex >= previousStepIndices.prev) {
+      return _forward;
+    } else {
+      return _back;
+    }
+  }
 </script>
 
 <style>
@@ -33,7 +44,7 @@
 </style>
 
 {#if slugOrder[$currentStepIndex] === slug}
-  <div class="step" in:fly={{ x: 300, duration: 500 }}>
+  <div class="step" in:fly={transition()}>
     <h3>
       Step {$currentStepIndex + 1}: {title}
     </h3>
