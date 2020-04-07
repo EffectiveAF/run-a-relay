@@ -28,7 +28,7 @@
   // Re-sync URL displayed and currentStepIndex
   const stepName = document.location.pathname
         .slice('/step/'.length)
-        .match(/[\w\-]+/);
+        .match(/[\w\-]+/)[0];
   const stepIndex = slugOrder.indexOf(stepName);
   if (stepIndex !== -1) {
     $currentStepIndex = stepIndex;
