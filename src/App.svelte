@@ -14,12 +14,8 @@
       <Home />
     </Route>
 
-    <Route path="/step/:stepName">
-      <Steps />
-    </Route>
+    <Route path="/step/:stepName" component={Steps} />
 
-    <Route path="/about">
-      <About />
-    </Route>
+    <Route path="/about" component={About} />
   </div>
 </Router>

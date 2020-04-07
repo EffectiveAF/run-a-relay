@@ -1,14 +1,32 @@
 <script>
+  import { onMount } from 'svelte';
   import { currentStepIndex } from './stores.js';
   import slugOrder from './slugOrder.js';
 
   export let stepName = '';
+  export let location;  // implicitly populated by router
 
   import Step from './Step.svelte';
   import Code from './Code.svelte';
   import ExternalLink from './ExternalLink.svelte';
   import ExternalButton from './ExternalButton.svelte';
   import PrevNextStepButtons from './PrevNextStepButtons.svelte';
+
+  onMount(async () => {
+    if (stepName !== slugOrder[$currentStepIndex]) {
+      if ($currentStepIndex === 0) {
+        // User was linked to /step/some-specific-step, so take them there
+        for (let i = 0; i < slugOrder.length; i++) {
+          if (slugOrder[i] === stepName) {
+            $currentStepIndex = i;
+            break;
+          }
+        }
+      } else {
+        console.log('Something unexpected occurred');
+      }
+    }
+  })
 </script>
 
 <style>

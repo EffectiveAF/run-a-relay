@@ -3,7 +3,6 @@
   export let title = '';
 
   import { fly } from 'svelte/transition';
-  import { navigate } from 'svelte-routing';
 
   import { currentStepIndex } from './stores.js';
   import slugOrder from './slugOrder.js';
