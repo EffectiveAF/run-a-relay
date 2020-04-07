@@ -38,7 +38,8 @@
 
 <svelte:window
   on:popstate={(e) => {
-    // Re-sync URL displayed and currentStepIndex
+    // Pulling the stepName from the router isn't good enough because
+    // it's not reactive...
     const maybeStepName = document.location.pathname
           .slice('/step/'.length)
           .match(/[\w\-]+/);
@@ -47,6 +48,7 @@
     }
     const stepName = maybeStepName[0];
 
+    // Re-sync URL displayed and currentStepIndex
     const stepIndex = slugOrder.indexOf(stepName);
     if (stepIndex !== -1) {
       $currentStepIndex = stepIndex;
@@ -55,7 +57,13 @@
 
   on:keydown={(e) => {
     if (e.target.tagName !== 'BODY') {
-      // Don't trigger keyboard shortcuts in code <input>s!
+      // Don't trigger keyboard shortcuts in code <input>s
+      return;
+    }
+
+    if (e.altKey) {
+      // Don't trigger keyboard shortcuts on left/right if user is
+      // typing alt+left or alt+right
       return;
     }
 
