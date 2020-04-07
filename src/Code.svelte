@@ -42,11 +42,6 @@
     color: var(--content-inverted);
     background-color: #21262B;
     height: 36px;
-    font-family: "IBM Plex Mono";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 18px;
     border-radius: 4px;
     padding: 0 16px;
     max-width: 100%;
@@ -61,6 +56,11 @@
     background-color: #21262B;
     border: none;
     min-width: 320px;
+    font-family: "IBM Plex Mono";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
   }
 </style>
 

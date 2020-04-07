@@ -1,49 +1,51 @@
+@import url('ibm-plex.css');
+
 @font-face {
   font-family: 'Open Sans';
   font-weight: normal;
   font-style: normal;
-  src: url('/fonts/OpenSans/Regular/OpenSans-Regular.woff2') format('woff2'),
-  url('/fonts/OpenSans/Regular/OpenSans-Regular.woff') format('woff'),
-  url('/fonts/OpenSans/Regular/OpenSans-Regular.ttf') format('truetype'),
-  url('/fonts/OpenSans/Regular/OpenSans-Regular.svg#OpenSansRegular') format('svg');
+  src: url('/fonts/open-sans/Regular/OpenSans-Regular.woff2') format('woff2'),
+  url('/fonts/open-sans/Regular/OpenSans-Regular.woff') format('woff'),
+  url('/fonts/open-sans/Regular/OpenSans-Regular.ttf') format('truetype'),
+  url('/fonts/open-sans/Regular/OpenSans-Regular.svg#OpenSansRegular') format('svg');
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-weight: normal;
   font-style: italic;
-  src: url('/fonts/OpenSans/Italic/OpenSans-Italic.woff2') format('woff2'),
-  url('/fonts/OpenSans/Italic/OpenSans-Italic.woff') format('woff'),
-  url('/fonts/OpenSans/Italic/OpenSans-Italic.ttf') format('truetype'),
-  url('/fonts/OpenSans/Italic/OpenSans-Italic.svg#OpenSansItalic') format('svg');
+  src: url('/fonts/open-sans/Italic/OpenSans-Italic.woff2') format('woff2'),
+  url('/fonts/open-sans/Italic/OpenSans-Italic.woff') format('woff'),
+  url('/fonts/open-sans/Italic/OpenSans-Italic.ttf') format('truetype'),
+  url('/fonts/open-sans/Italic/OpenSans-Italic.svg#OpenSansItalic') format('svg');
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-weight: 600;
   font-style: normal;
-  src: url('/fonts/OpenSans/Semibold/OpenSans-Semibold.woff2') format('woff2'),
-  url('/fonts/OpenSans/Semibold/OpenSans-Semibold.woff') format('woff'),
-  url('/fonts/OpenSans/Semibold/OpenSans-Semibold.ttf') format('truetype'),
-  url('/fonts/OpenSans/Semibold/OpenSans-Semibold.svg#OpenSansSemibold') format('svg');
+  src: url('/fonts/open-sans/Semibold/OpenSans-Semibold.woff2') format('woff2'),
+  url('/fonts/open-sans/Semibold/OpenSans-Semibold.woff') format('woff'),
+  url('/fonts/open-sans/Semibold/OpenSans-Semibold.ttf') format('truetype'),
+  url('/fonts/open-sans/Semibold/OpenSans-Semibold.svg#OpenSansSemibold') format('svg');
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-weight: bold;
   font-style: normal;
-  src: url('/fonts/OpenSans/Bold/OpenSans-Bold.woff2') format('woff2'),
-  url('/fonts/OpenSans/Bold/OpenSans-Bold.woff') format('woff'),
-  url('/fonts/OpenSans/Bold/OpenSans-Bold.ttf') format('truetype'),
-  url('/fonts/OpenSans/Bold/OpenSans-Bold.svg#OpenSansBold') format('svg');
+  src: url('/fonts/open-sans/Bold/OpenSans-Bold.woff2') format('woff2'),
+  url('/fonts/open-sans/Bold/OpenSans-Bold.woff') format('woff'),
+  url('/fonts/open-sans/Bold/OpenSans-Bold.ttf') format('truetype'),
+  url('/fonts/open-sans/Bold/OpenSans-Bold.svg#OpenSansBold') format('svg');
 }
 
 @font-face {
   font-family: 'Open Sans';
   font-weight: 300;
   font-style: normal;
-  src: url('/fonts/OpenSans/Light/OpenSans-Light.woff2') format('woff2'),
-  url('/fonts/OpenSans/Light/OpenSans-Light.woff') format('woff'),
-  url('/fonts/OpenSans/Light/OpenSans-Light.ttf') format('truetype'),
-  url('/fonts/OpenSans/Light/OpenSans-Light.svg#OpenSansLight') format('svg');
+  src: url('/fonts/open-sans/Light/OpenSans-Light.woff2') format('woff2'),
+  url('/fonts/open-sans/Light/OpenSans-Light.woff') format('woff'),
+  url('/fonts/open-sans/Light/OpenSans-Light.ttf') format('truetype'),
+  url('/fonts/open-sans/Light/OpenSans-Light.svg#OpenSansLight') format('svg');
 }
