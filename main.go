@@ -3,54 +3,42 @@ package main
 import (
 	"flag"
 	"fmt"
-	"strings"
 
 	log "github.com/sirupsen/logrus"
 )
 
 func main() {
-	httpAddr := flag.String("http", ":80",
-		"Address to listen on HTTP (will redirect to HTTPS port)")
-	httpsAddr := flag.String("https", ":443",
-		"Address to listen on HTTPS")
+	listenPort := flag.Int("l", 5001,
+		"HTTP port to listen on when not in standalone mode; useful for development and when receiving proxied traffic from Nginx/Tor daemon/etc")
+	standalone := flag.Bool("standalone", false, "Run in standalone mode: listen on :443, redirect from :80 to 443, auto-renew SSL certs")
 	domain := flag.String("domain", "",
-		"Domain of this service")
-	torPort := flag.Int("tor-port", 5002,
-		"HTTP port to listen on for Tor Onion service traffic")
-	torDomain := flag.String("tor-domain", "",
-		"Domain to listen on for Onion service you set up on localhost")
+		"Domain of this service; required when running in standalone mode")
 	flag.Parse()
 
-	log.SetLevel(log.ErrorLevel)
+	if *standalone {
+		log.SetLevel(log.ErrorLevel)
 
-	if *domain == "" {
-		log.Fatal("You must specify a -domain; e.g., -domain runarelay.org")
+		if *domain == "" {
+			log.Fatal("You must specify a -domain; e.g., -domain runarelay.org")
+		}
+
+		go redirectToHTTPS(":80", *domain, "443")
+		go httpsServer(*domain)
 	}
 
-	// Start HTTP server listening for incoming HTTP traffic to *torDomain
-	go torServer(*torPort, *torDomain)
+	localServer(*listenPort)
+}
 
-	// Set up HTTP -> HTTPS redirection
-	httpsPort := strings.SplitN(*httpsAddr, ":", 2)[1]
-	go redirectToHTTPS(*httpAddr, *domain, httpsPort)
-
-	// HTTPS server
-	manager := getAutocertManager(*domain)
-	srv := ProductionServer(*httpsAddr, *domain, manager)
-	log.Infof("Listening for HTTPS traffic @ %v", *httpsAddr)
+func httpsServer(domain string) {
+	manager := getAutocertManager(domain)
+	srv := ProductionServer(":443", domain, manager)
+	log.Infof("Listening for HTTPS traffic @ %v")
 	log.Fatal(srv.ListenAndServeTLS("", ""))
 }
 
-func torServer(torPort int, torDomain string) {
-	if torDomain == "" {
-		log.Errorln(`HTTP server listening for .onion traffic NOT started! Consider setting up an Onion service on this server, then adding
-
-    -tor-domain myoniondomainabc123xyzabc123xyzabc123xyz.onion`)
-		return
-	}
-
-	listenAddr := fmt.Sprintf("127.0.0.1:%d", torPort)
-	torSrv := NewServer(listenAddr, torDomain)
-	log.Infof("Listening on %s for traffic from %v", listenAddr, torDomain)
-	log.Fatal(torSrv.ListenAndServe())
+func localServer(port int) {
+	listenAddr := fmt.Sprintf("127.0.0.1:%d", port)
+	srv := NewServer(listenAddr, "")
+	log.Infof("Listening on %s", listenAddr)
+	log.Fatal(srv.ListenAndServe())
 }

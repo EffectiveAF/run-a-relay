@@ -48,13 +48,20 @@ func NewServer(listenAddr, domain string) *http.Server {
 	r := NewRouter()
 
 	middleware := alice.New(
-		csp.GetCustomHandlerStyleUnsafeInline(domain, "www."+domain),
 		hsts.PreloadHandler,
-		frame.GetHandler("www."+domain),
 		content.GetHandler,
 		xss.GetHandler,
 		referrer.NoHandler,
 	)
+
+	if domain != "" {
+		middleware = middleware.Append(
+			csp.GetCustomHandlerStyleUnsafeInline(domain, "www."+domain),
+			frame.GetHandler("www."+domain),
+		)
+	} else {
+		log.Warn("No -domain specified so can't add all security headers")
+	}
 
 	return &http.Server{
 		Addr:         listenAddr,
