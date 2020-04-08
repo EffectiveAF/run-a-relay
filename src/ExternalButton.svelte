@@ -20,8 +20,8 @@
     width: 20px;
     height: 20px;
     margin-left: 8px;
-    mask: url(/img/External_link_font_awesome.svg) no-repeat center / contain;
-    -webkit-mask: url(/img/External_link_font_awesome.svg) no-repeat center / contain;
+    mask: url(/img/open_external.svg) no-repeat center / contain;
+    -webkit-mask: url(/img/open_external.svg) no-repeat center / contain;
   }
 
   .primary > .external-link-ctn {
