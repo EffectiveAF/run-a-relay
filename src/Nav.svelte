@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from 'svelte';
   import { Link } from 'svelte-routing';
 
   import ExternalButton from './ExternalButton.svelte';
@@ -25,18 +26,29 @@
   // Styling in public/relay.css
   const _toggleClass = 'show-right-nav-mobile';
 
-  const toggleNavRight = (e) => {
-    const navRight = document.getElementsByClassName('nav-right')[0];
-    const toggler = document.getElementsByClassName('toggle-nav-right')[0];
+  // Used in helpers below
+  let _navRight, toggler;
+  onMount(async () => {
+    _navRight = document.getElementsByClassName('nav-right')[0];
+    toggler = document.getElementsByClassName('toggle-nav-right')[0];
+  })
 
-    if (_hasClass(navRight, _toggleClass)) {
-      navRight.style.visibility = 'hidden';
-      _removeClass(navRight, _toggleClass);
-      toggler.textContent = togglerLabelOpen;
+  const collapseNav = () => {
+    _navRight.style.visibility = 'hidden';
+    _removeClass(_navRight, _toggleClass);
+    toggler.textContent = togglerLabelOpen;
+  }
+  const showNav = () => {
+    _navRight.style.visibility = 'visible';
+    _addClass(_navRight, _toggleClass);
+    toggler.textContent = togglerLabelClose;
+  }
+
+  const toggleNavRight = (e) => {
+    if (_hasClass(_navRight, _toggleClass)) {
+      collapseNav();
     } else {
-      navRight.style.visibility = 'visible';
-      _addClass(navRight, _toggleClass);
-      toggler.textContent = togglerLabelClose;
+      showNav();
     }
   }
 </script>
@@ -119,7 +131,7 @@
     on:click={toggleNavRight}
     on:blur={() => {
       // TODO: Remove this race condition hack
-      setTimeout(toggleNavRight, 250);
+      setTimeout(collapseNav, 250);
     }}
   >
     {togglerLabelOpen}
