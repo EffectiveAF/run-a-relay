@@ -27,21 +27,21 @@
   const _toggleClass = 'show-right-nav-mobile';
 
   // Used in helpers below
-  let _navRight, toggler;
+  let _navRight, _toggler;
   onMount(async () => {
     _navRight = document.getElementsByClassName('nav-right')[0];
-    toggler = document.getElementsByClassName('toggle-nav-right')[0];
+    _toggler = document.getElementsByClassName('toggle-nav-right')[0];
   })
 
   const collapseNav = () => {
     _navRight.style.visibility = 'hidden';
     _removeClass(_navRight, _toggleClass);
-    toggler.textContent = togglerLabelOpen;
+    _toggler.textContent = togglerLabelOpen;
   }
   const showNav = () => {
     _navRight.style.visibility = 'visible';
     _addClass(_navRight, _toggleClass);
-    toggler.textContent = togglerLabelClose;
+    _toggler.textContent = togglerLabelClose;
   }
 
   const toggleNavRight = (e) => {
