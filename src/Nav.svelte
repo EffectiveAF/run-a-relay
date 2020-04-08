@@ -15,6 +15,12 @@
     height: 64px;
   }
 
+  @media (max-width: 640px) {
+    nav {
+      padding: 0 10px;
+    }
+  }
+
   nav a:hover {
     text-decoration: none;
   }
