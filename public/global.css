@@ -11,8 +11,10 @@
   --button-primary: #8E22C3;
   --content-default: #000;
   --content-inverted: #fff;
-
   --neutral-100: #f0f0f0;
+
+  --margin-left-default: 30px;
+  --margin-left-default-mobile: 15px;
 }
 
 html, body {

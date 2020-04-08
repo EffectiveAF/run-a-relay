@@ -23,7 +23,7 @@
     flex-direction: row;
     justify-contents: space-between;
     min-width: 240px;
-    margin-left: 30px;
+    padding: var(--margin-left-default);
   }
 
   .prev-ctn {
@@ -33,6 +33,16 @@
   .next-ctn {
     min-width: 110px;
     margin-left: 10px;
+  }
+
+  @media (max-width: 640px) {
+    .prev-next {
+      padding: var(--margin-left-default-mobile);
+      max-width: 96%;
+    }
+    .next-ctn {
+      margin-left: 0;
+    }
   }
 </style>
 

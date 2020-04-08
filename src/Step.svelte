@@ -7,14 +7,36 @@
   import { currentStepIndex, previousStepIndices } from './stores.js';
   import slugOrder from './slugOrder.js';
 
-  const _forward = { x: 300, duration: 500 };
-  const _back = { x: -300, duration: 500 };
+  function _screenWidth() {
+    return Math.max(
+      document.body.scrollWidth,
+      document.documentElement.scrollWidth,
+      document.body.offsetWidth,
+      document.documentElement.offsetWidth,
+      document.documentElement.clientWidth
+    );
+  }
+
+  const _forward = { x: 200, duration: 400 };
+  const _forwardMobile = { x: 20, duration: 400 };
+  const _back = { x: -200, duration: 400 };
+  const _backMobile = { x: -20, duration: 400 };
 
   const transition = () => {
+    const mobile = _screenWidth() <= 640;
+
     if ($currentStepIndex >= previousStepIndices.prev) {
-      return _forward;
+      if (mobile) {
+        return _forwardMobile;
+      } else {
+        return _forward;
+      }
     } else {
-      return _back;
+      if (mobile) {
+        return _backMobile;
+      } else {
+        return _back;
+      }
     }
   }
 </script>
@@ -26,13 +48,13 @@
     justify-content: flex-start;
     align-items: left;
 
-    padding: 40px;
-    max-width: 80%;
+    padding: var(--margin-left-default);
+    max-width: 800px;
   }
 
   @media (max-width: 640px) {
     .step {
-      padding: 10px;
+      padding: 15px;
       max-width: 96%;
     }
   }
