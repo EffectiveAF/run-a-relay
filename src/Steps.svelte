@@ -26,6 +26,9 @@
         console.log('Something unexpected occurred');
       }
     }
+
+    // Useful on mobile when coming from homepage
+    window.scrollTo(0, 0);
   })
 </script>
 
