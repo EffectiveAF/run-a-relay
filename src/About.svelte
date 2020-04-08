@@ -18,7 +18,7 @@
 </style>
 
 <div class="about">
-  <h2>Who Built <em>Run A Relay</em>?</h2>
+  <h3>Who Built <em>Run A Relay</em>?</h3>
 
   <ul>
     <li>- Steve Phillips / <ExternalLink href="https://github.com/elimisteve">@elimisteve</ExternalLink>, privacy activist and Founder of <ExternalLink href="https://effective.af/">EffectiveAF</ExternalLink></li>
