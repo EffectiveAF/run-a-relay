@@ -7,3 +7,17 @@
 nav > a > h1, h2, h3, h4 {
   color: black;
 }
+
+/* Steady class name needed for dynamic show/hide of .nav-right on mobile */
+.nav-right.show-right-nav-mobile {
+  display: flex;
+  position: fixed;
+  top: 64px;
+  right: 0;
+  width: 240px;
+  z-index: 2;
+  background-color: #f9f9f9;
+}
+.nav-right.show-right-nav-mobile button {
+  margin: 12px 0;
+}
