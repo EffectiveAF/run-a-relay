@@ -55,7 +55,7 @@
     color: var(--content-inverted);
     background-color: #21262B;
     border: none;
-    min-width: 320px;
+    min-width: 200px;
     font-family: "IBM Plex Mono";
     font-style: normal;
     font-weight: normal;
