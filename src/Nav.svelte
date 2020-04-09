@@ -20,28 +20,22 @@
     }
   }
 
-  const togglerLabelOpen = 'V';
-  const togglerLabelClose = 'X';
-
   // Styling in public/relay.css
   const _toggleClass = 'show-right-nav-mobile';
 
   // Used in helpers below
-  let _navRight, _toggler;
+  let _navRight;
   onMount(async () => {
     _navRight = document.getElementsByClassName('nav-right')[0];
-    _toggler = document.getElementsByClassName('toggle-nav-right')[0];
   })
 
   const collapseNav = () => {
     _navRight.style.visibility = 'hidden';
     _removeClass(_navRight, _toggleClass);
-    _toggler.textContent = togglerLabelOpen;
   }
   const showNav = () => {
     _navRight.style.visibility = 'visible';
     _addClass(_navRight, _toggleClass);
-    _toggler.textContent = togglerLabelClose;
   }
 
   const toggleNavRight = (e) => {
@@ -126,9 +120,11 @@
     </ExternalButton>
   </div>
 
-  <img src="/img/hamburger_menu.svg"
-    alt="Hamburger Menu"
+  <img
     class="toggle-nav-right"
+    src="/img/hamburger_menu.svg"
+    alt="Hamburger Menu"
+    tabindex="1"
     on:click={toggleNavRight}
     on:blur={() => {
       // TODO: Remove this race condition hack
