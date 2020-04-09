@@ -126,14 +126,13 @@
     </ExternalButton>
   </div>
 
-  <button
+  <img src="/img/hamburger_menu.svg"
+    alt="Hamburger Menu"
     class="toggle-nav-right"
     on:click={toggleNavRight}
     on:blur={() => {
       // TODO: Remove this race condition hack
       setTimeout(collapseNav, 250);
     }}
-  >
-    {togglerLabelOpen}
-  </button>
+  />
 </nav>
