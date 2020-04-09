@@ -21,3 +21,9 @@ nav > a > h1, h2, h3, h4 {
 .nav-right.show-right-nav-mobile button {
   margin: 12px 0;
 }
+
+.toggle-nav-right {
+  min-width: 24px;
+  mask: url(/img/hamburger_menu.svg) no-repeat center / contain;
+  -webkit-mask: url(/img/hamburger_menu.svg) no-repeat center / contain;
+}
