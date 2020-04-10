@@ -25,7 +25,7 @@
     <ul>
       <li>- Lead developer and hoster of <ExternalLink href="https://leapchat.org">LeapChat</ExternalLink>: end-to-end encrypted, ephemeral chat in the browser</li>
     </ul>
-    <li>- Tim Sullivan / <ExternalLink href="https://github.com/timsully">@timsully</ExternalLink>, UI/human factors engineer at Splunk</li>
+    <li>- Tim Sullivan / <ExternalLink href="https://github.com/timsully">@timsully</ExternalLink>, Design Technologist at Splunk</li>
   </ul>
 
   <p>
