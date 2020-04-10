@@ -70,6 +70,11 @@
       justify-content: center;
     }
 
+    @media (max-width: 600px) {
+      .hide-xsmall {
+        display: none;
+      }
+    }
   }
 
 </style>
@@ -77,21 +82,21 @@
 <footer>
 
   <ul>
-    <li>© 2020 Run A Relay</li>
+    <li>© 2020&nbsp;<ExternalLink href="https://effective.af/">EffectiveAF</ExternalLink></li>
 
     <li><Link to="/terms">Terms</Link></li>
 
     <li><Link to="/privacy"><li>Privacy</li></Link></li>
 
-    <li><ExternalLink href="https://donate.torproject.org/">Donate to Tor</ExternalLink></li>
+    <li class="hide-xsmall"><ExternalLink href="https://donate.torproject.org/">Donate to Tor</ExternalLink></li>
 
-    <li><Link to="/about">About</Link></li>
+    <li class="hide-xsmall"><Link to="/about">About</Link></li>
   </ul>
 
-  <ExternalLink href="https://github.com/elimisteve/run-a-relay"><img src="./img/github_logo.svg" alt="Github Logo" width="25px" height="24px"></ExternalLink>
+  <ExternalLink href="https://github.com/EffectiveAF/run-a-relay"><img src="/img/github_logo.svg" alt="Github Logo" width="25px" height="24px"></ExternalLink>
 
   <ul class="list-end">
-    <li>Made by&nbsp;<ExternalLink href="https://github.com/elimisteve">Steve Phillips</ExternalLink>&nbsp;&&nbsp;<ExternalLink href="https://github.com/timsully">Tim Sullivan&nbsp;</ExternalLink>&nbsp;with&nbsp;<span>&#10084;</span>
+    <li>Made by&nbsp;<ExternalLink href="https://github.com/elimisteve">Steve Phillips</ExternalLink>&nbsp;&&nbsp;<ExternalLink href="https://github.com/timsully">Tim Sullivan</ExternalLink>&nbsp;with&nbsp;<span>&#10084;</span>
     </li>
   </ul>
 
