@@ -52,6 +52,8 @@ Then just visit [localhost:5000](http://localhost:5000/)!
 - `public/img/External_link_font_awesome.svg`
   - Font Awesome by Dave Gandy - https://fontawesome.github.com/Font-Awesome / CC BY-SA
 
+- `public/img/github_logo.svg`
+  - Github Logo by LOGO WINE - https://www.logo.wine/terms
 
 ## Donate to Tor
 
