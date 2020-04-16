@@ -23,8 +23,8 @@
     text-align: center;
   }
   h2 {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
 </style>
 
