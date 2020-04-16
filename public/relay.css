@@ -43,5 +43,8 @@ nav > a > h1, h2, h3, h4 {
   margin-left: 30px;
 }
 .static-content li, .static-content p {
-  margin-top: 20px;
+  margin-top: 15px;
+}
+.static-content a:hover {
+  text-decoration: underline;
 }
