@@ -96,6 +96,8 @@
 
   <div class="footer-middle">
     <ExternalLink href="https://github.com/EffectiveAF/run-a-relay"><img src="/img/github_logo.svg" alt="Github Logo" width="25px" height="24px"></ExternalLink>
+    <div style="width: 8px;"></div>
+    <ExternalLink href="http://vxw5mjyap4bgb4w7h7qkeknxszmgp5efjtg77mnwjtbczynihsij3myd.onion"><img src="/img/tor.svg" alt="Onion Logo; visit this site on Tor!" width="25px" height="24px"></ExternalLink>
   </div>
 
   <ul class="list-end">
