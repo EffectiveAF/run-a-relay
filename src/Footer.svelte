@@ -9,21 +9,18 @@
     display: flex;
     flex-direction: row;
     height: 24px;
-    margin: 24px 16px 0px 16px;
+    margin: 24px 16px 12px 16px;
     justify-content: space-between;
     margin-top: 60vh;
-  }
-
-  footer > ul {
-    min-width: 40vw;
   }
 
   span {
     content: "\2764";
   }
 
-  footer ul {
-    flex-grow: 1;
+  footer ul, footer > .footer-middle {
+    display: flex;
+    flex: 1;
   }
 
   footer ul, footer ul li {
@@ -37,11 +34,15 @@
     padding-left: 24px;
   }
 
+  footer > .footer-middle {
+    justify-content: center;
+  }
+
   .list-end {
     justify-content: flex-end;
   }
 
-  @media (max-width: 960px) {
+  @media (max-width: 1200px) {
     footer {
       display: flex;
       flex-direction: column;
@@ -62,7 +63,7 @@
       margin: 0;
     }
 
-    footer > :global(a) {
+    footer > .footer-middle {
       order: -1;
     }
 
@@ -88,12 +89,14 @@
 
     <li><Link to="/privacy"><li>Privacy</li></Link></li>
 
-    <li class="hide-xsmall"><ExternalLink href="https://donate.torproject.org/">Donate to Tor</ExternalLink></li>
-
     <li class="hide-xsmall"><Link to="/about">About</Link></li>
+
+    <li class="hide-xsmall"><ExternalLink href="https://donate.torproject.org/">Donate to Tor</ExternalLink></li>
   </ul>
 
-  <ExternalLink href="https://github.com/EffectiveAF/run-a-relay"><img src="/img/github_logo.svg" alt="Github Logo" width="25px" height="24px"></ExternalLink>
+  <div class="footer-middle">
+    <ExternalLink href="https://github.com/EffectiveAF/run-a-relay"><img src="/img/github_logo.svg" alt="Github Logo" width="25px" height="24px"></ExternalLink>
+  </div>
 
   <ul class="list-end">
     <li>Made by&nbsp;<ExternalLink href="https://github.com/elimisteve">Steve Phillips</ExternalLink>&nbsp;&&nbsp;<ExternalLink href="https://github.com/timsully">Tim Sullivan</ExternalLink>&nbsp;with&nbsp;<span>&#10084;</span>
