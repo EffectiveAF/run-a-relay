@@ -26,6 +26,8 @@
     <Route path="/terms" component={Terms} />
 
     <Route path="/privacy" component={Privacy} />
+
+    /* Remember to add new URL prefixes to server.go:31 */
   </div>
   
   <Footer />

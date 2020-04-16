@@ -31,6 +31,8 @@ func NewRouter() *mux.Router {
 	urlPrefixes := []string{
 		"/about",
 		"/step",
+		"/privacy",
+		"/terms",
 	}
 	for _, prefix := range urlPrefixes {
 		r.PathPrefix(prefix).HandlerFunc(GetIndex)
