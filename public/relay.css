@@ -27,3 +27,21 @@ nav > a > h1, h2, h3, h4 {
   mask: url(/img/hamburger_menu.svg) no-repeat center / contain;
   -webkit-mask: url(/img/hamburger_menu.svg) no-repeat center / contain;
 }
+
+/* Used in static-ish pages (/about, /terms, /privacy) */
+.static-content {
+  padding: var(--margin-left-default);
+  max-width: 80%;
+}
+@media (max-width: 640px) {
+  .static-content {
+    padding: calc(var(--margin-left-default) / 2);
+    max-width: 96%;
+  }
+}
+.static-content ul {
+  margin-left: 30px;
+}
+.static-content li, .static-content p {
+  margin-top: 20px;
+}

@@ -5,19 +5,9 @@
 </script>
 
 <style>
-  .about {
-    padding: 40px;
-    font-size: 18px;
-  }
-  ul {
-    margin-left: 30px;
-  }
-  li, p {
-    margin-top: 10px;
-  }
 </style>
 
-<div class="about">
+<div class="static-content">
   <h3>Who Built <em>Run A Relay</em>?</h3>
 
   <ul>
