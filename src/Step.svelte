@@ -68,7 +68,7 @@
 {#if slugOrder[$currentStepIndex] === slug}
   <div class="step" in:fly={transition()}>
     <h3>
-      <strong>Step {$currentStepIndex + 1}: {title}</strong>
+      <strong style="font-weight: 600;">Step {$currentStepIndex + 1}: {title}</strong>
     </h3>
 
     <div class="instructions">
