@@ -78,13 +78,13 @@
     }
 
     if ($currentStepIndex > 0) {
-      if (['ArrowLeft', 'ArrowUp'].indexOf(e.key) !== -1) {
+      if (['ArrowLeft'].indexOf(e.key) !== -1) {
         navPrevious();
         return;
       }
     }
     if ($currentStepIndex < slugOrder.length - 1) {
-      if (['ArrowRight', 'ArrowDown'].indexOf(e.key) !== -1) {
+      if (['ArrowRight'].indexOf(e.key) !== -1) {
         navNext();
         return;
       }
