@@ -33,7 +33,7 @@
   })
 
   const displayHosts = (hosts) => {
-    const links = hosts.map(h => `${h.name}: <a href="${h.url}" target="_blank" rel="nofollow noreferrer noopener">${h.url}</a> (${h.country})`);
+    const links = hosts.map(h => `* ${h.name}: <a href="${h.url}" target="_blank" rel="nofollow noreferrer noopener">${h.url}</a> (${h.country})`);
     return links.join('<br />');
   }
 
@@ -133,7 +133,7 @@
     </p>
 
     <p style="margin-top: 25px; margin-bottom: 25px;">
-      <ExternalButton primary href="https://twitter.com/intent/tweet?text=I%20just%20spun%20up%20a%20new%20@TorProject%20relay!%20Simple%20instructions%20for%20running%20your%20own:%20https://RunARelay.org">Tweet/brag about your new relay</ExternalButton>
+      <ExternalButton primary href="https://twitter.com/intent/tweet?text=I%20just%20spun%20up%20a%20new%20@TorProject%20relay!%20Simple%20instructions%20for%20running%20your%20own:%20https://RunARelay.org">Brag on Twitter</ExternalButton>
     </p>
 
     <p>

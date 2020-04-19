@@ -62,6 +62,7 @@
   .instructions {
     padding: 30px 0;
     min-height: 200px;
+    word-break: break-word;
   }
 </style>
 
