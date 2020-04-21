@@ -38,6 +38,8 @@
   }
 
   const numSuggestedProviders = 3;
+
+  let viewAllHosts = false;
 </script>
 
 <style>
@@ -97,9 +99,18 @@
       curated list!):
     </p>
 
-    <p>
-      {@html displayHosts(chooseRandomHosts(numSuggestedProviders))}
-    </p>
+    {#if viewAllHosts}
+      <p>
+        {@html displayHosts(serverHosts)}
+      </p>
+    {:else}
+      <p>
+        {@html displayHosts(chooseRandomHosts(numSuggestedProviders))}
+      </p>
+      <p>
+        <button on:click={() => viewAllHosts = true}>View All</button>
+      </p>
+    {/if}
   </Step>
 
 
