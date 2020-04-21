@@ -57,7 +57,7 @@
   <Step slug="intro" title="Introduction and Disclaimer">
     <p>
       Welcome to Run A Relay! Our goal is to make it as fast and easy
-      as possible to stand up a new
+      as possible to set up a new
       <ExternalLink href="https://www.torproject.org/">Tor</ExternalLink>
       relay, with special emphasis placed on helping you
       choose a host/server provider based on
@@ -107,7 +107,7 @@
     <p>
       Use the impressively
       awesome <ExternalLink href="https://github.com/nusenu/ansible-relayor">https://github.com/nusenu/ansible-relayor</ExternalLink>
-      to stand up your relay on Debian, Ubuntu, FreeBSD, or OpenBSD!
+      to set up your relay on Debian, Ubuntu, FreeBSD, or OpenBSD!
     </p>
 
     <p>
