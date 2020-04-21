@@ -30,14 +30,6 @@
 
     // Useful on mobile when coming from homepage
     window.scrollTo(0, 0);
-
-    // Spread the word!
-    console.log('---');
-    console.log('Receive these instructions over SSH!');
-    console.log('  $ ssh runarelay.org\n');
-    console.log('SSH fingerprint: SHA256:Cr/E7i8gvmuHsUUV4GNXSoXBVR1zKC3dSb/k3mGUC+w');
-    console.log('\nMake sure you have an SSH keypair ($ ls -l ~/.ssh/); create one with\n  $ ssh-keygen -b 4096');
-    console.log('---');
   })
 
   const displayHosts = (hosts) => {
