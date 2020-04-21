@@ -8,6 +8,8 @@ print('# RunARelay.org Tutorial')
 
 for title, p in re.findall(r'(?:title="(.*?)")|(?:<p>(.*?)</p>)', rar_orig, re.DOTALL):
     if title:
+      if on_step > 1:
+          print('---')
       print('\n## Step ' + str(on_step) + ':', title + '\n')
       on_step += 1
 
