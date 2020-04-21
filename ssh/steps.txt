@@ -1,0 +1,79 @@
+# RunARelay.org Tutorial
+
+## Step 1: Introduction and Disclaimer
+
+Welcome to Run A Relay! Our goal is to make it as fast and easy
+ as possible to set up a new Tor ( https://www.torproject.org/ )
+ relay, with special emphasis placed on helping you
+ choose a host/server provider based on crowdsourced information
+ from The Tor Project's wiki
+ ( https://trac.torproject.org/projects/tor/wiki/doc/GoodBadISPs ).
+
+We've distilled it all down to actionable steps!
+
+
+## Step 2: Run or Donate?
+
+If you have less than $10/month that you can spend on a server
+ to run your relay, consider donating to one of these fine
+ projects instead! This will make the Tor network more
+ efficient.
+
+TorServers.net ( https://torservers.net/donate.html )
+ |
+ Noisetor ( https://noisetor.net/ )
+ |
+ Emerald Onion ( https://emeraldonion.org/donate/ )
+
+
+## Step 3: Choosing A Host
+
+Server providers to consider:
+
+* Creanova: http://creanova.org/ (Finland)
+
+* myLoc: https://myloc.de/ (Germany)
+* Contabo: https://contabo.de/ (Germany)
+
+* Trabia: https://www.trabia.com/ (Moldova)
+
+* LiteServer: https://www.liteserver.nl/ (Netherlands)
+* i3d: https://www.i3d.net/ (Netherlands)
+* KoDDoS: https://koddos.net/ (Netherlands)
+* Worldstream: https://www.worldstream.nl/ (Netherlands)
+
+* HitMe.pl: https://hitme.pl/ (Poland)
+* Slask DataCenter: https://sldc.eu/ (Poland)
+
+* MilesWeb: https://www.milesweb.com/ (Romania)
+
+* Datawagon: https://datawagon.net/ (US)
+* DreamHost: https://www.dreamhost.com/ (US)
+* PulseServers: https://www.pulseservers.com/ (US)
+
+
+## Step 4: Install Tor Daemon & Configure Relay
+
+Use the impressively
+ awesome ansible-relayor ( https://github.com/nusenu/ansible-relayor )
+ to set up your relay on Debian, Ubuntu, FreeBSD, or OpenBSD!
+
+(Non-Debian preferred! Because diversity.)
+
+Or set up without Ansible:
+ https://community.torproject.org/relay/setup/guard/ .
+
+
+## Step 5: Thank You!
+
+You're all set! Thank you so much for taking action to
+ make the Tor network faster and more scalable!
+
+Each new relay can potentially help thousands of people protect
+ their privacy every single day. The more the merrier!
+
+Brag on Twitter:
+ https://twitter.com/intent/tweet?text=I%20just%20spun%20up%20a%20new%20@TorProject%20relay!%20Simple%20instructions%20for%20running%20your%20own:%20https://RunARelay.org
+
+For more information, check out the official Tor Relay Guide:
+ https://trac.torproject.org/projects/tor/wiki/TorRelayGuide .

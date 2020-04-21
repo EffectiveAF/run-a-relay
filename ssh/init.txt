@@ -1,0 +1,11 @@
+Init (if no key):
+
+    ssh-keygen -b 4096
+
+Install:
+
+    go get github.com/gliderlabs/sshfront
+
+Run:
+
+    sudo $(which sshfront) -k $HOME/.ssh/id_rsa ./handler.sh
