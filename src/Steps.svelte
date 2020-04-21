@@ -124,6 +124,10 @@
     <p>
       (Non-Debian preferred!  Because diversity.)
     </p>
+
+    <p>
+      Or set up without Ansible: <ExternalLink href="https://community.torproject.org/relay/setup/guard/">https://community.torproject.org/relay/setup/guard/</ExternalLink> .
+    </p>
   </Step>
 
 
