@@ -13,11 +13,7 @@
 
 <style>
   .home {
-    /* display: flex; */
-    /* flex-direction: row; */
-    justify-content: center;
-    align-items: center;
-    margin-top: 160px;
+    margin-top: 104px;
   }
   h1, h2 {
     text-align: left;
@@ -33,7 +29,7 @@
 <div class="container-fluid">
 
   <div class="home col-lg-offset-2">
-    <div class="row col-lg-6"><h1 class="hero-header">Thinking about running a Tor relay?</h1></div>
+    <div class="row col-lg-6"><h1>Thinking about running a Tor relay?</h1></div>
     
     <div class="row"><h2 class="col-lg-4">What is this?</h2></div>
     
