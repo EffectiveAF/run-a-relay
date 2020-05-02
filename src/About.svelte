@@ -26,7 +26,7 @@
 }
 
 div > img:first-child {
-  margin-right: 64px;
+  margin-right: 56px;
 }
 
 div > img {
@@ -61,20 +61,19 @@ div > img {
 
   <div class="flex-child">
 
-    <div class="col-lg-7 col-lg-offset-2">
+    <div class="col-lg-8 col-lg-offset-2">
       <h1 class="padding-top">Creating a better future, together.</h1>
     </div>
 
 
     <div class="col-lg-offset-2">
-      <div class="col-lg-6">
+      <div class="col-lg-7">
         <h3 class="col-lg-4 h3-padding">Who we are</h3>
       </div>
 
-      <p class="col-lg-7">It would make sense to introduce in this body of text what this is and how to get started. The rest of this text is.</p>
+      <p class="col-lg-7">It would make sense to introduce in this body of text what this is and how to get started. The rest of this text is</p>
 
-      <div class="col-lg-6"><h3 class="col-lg-4 h3-padding">Our Mission</h3></div>
-      
+      <div class="col-lg-7"><h3 class="col-lg-4 h3-padding">Our Mission</h3></div>
       
       <p class="col-lg-7">It would make sense to introduce in this body of text what this is and how to get started. The rest of this text is.
       </p>
