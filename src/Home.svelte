@@ -33,7 +33,7 @@
     
     <div class="row"><h2 class="col-lg-4">What is this?</h2></div>
     
-    <div class="row"><p class="col-lg-4">It would make sense to introduce in this body of text what this is and how to get started. The rest of this text is lorem ipsum suspendisse ante urna, condimentum vel diam eget, condimentum convallis elit. Maecenas congue enim quis tincidunt fermentum. Sed sit amet neque sapien. Donec ac nunc tincidunt, sodales dolor sit amet, egestas diam.
+    <div class="row"><p class="col-lg-6">It would make sense to introduce in this body of text what this is and how to get started. The rest of this text is lorem ipsum suspendisse ante urna, condimentum vel diam eget, condimentum convallis elit. Maecenas congue enim quis tincidunt fermentum. Sed sit amet neque sapien. Donec ac nunc tincidunt, sodales dolor sit amet, egestas diam.
     </p></div>
   </div>
 
