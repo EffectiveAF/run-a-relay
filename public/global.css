@@ -47,6 +47,23 @@ h2 {
   color: #000000;
 }
 
+h3 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+h6 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+}
+
 p {
   font-style: normal;
   font-weight: normal;
