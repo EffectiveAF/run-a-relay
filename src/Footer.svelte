@@ -8,6 +8,10 @@
   footer {
     display: flex;
     flex-direction: row;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
     height: 24px;
     margin: 24px 16px 12px 16px;
     justify-content: space-between;
