@@ -34,7 +34,7 @@ h1 {
   font-style: normal;
   font-weight: bold;
   font-size: 64px;
-  line-height: 110.18%;
+  line-height: 72px;
   color: #000000;
 }
 
@@ -42,7 +42,7 @@ h2 {
   font-style: normal;
   font-weight: 600;
   font-size: 48px;
-  line-height: 110.18%;
+  line-height: 56px;
   color: #000000;
 }
 
@@ -232,4 +232,25 @@ button.secondary {
 .hvr-ripple-out-sec:active:before {
   -webkit-animation-name: hvr-ripple-out-sec;
   animation-name: hvr-ripple-out-sec;
+}
+
+@media (max-width: 640px) {
+  h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  h2 {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 30px;
+  }
 }
