@@ -1,6 +1,7 @@
 @import url('reset.css');
 @import url('fonts.css');
 @import url('relay.css?v=59');
+@import url('flexbox.css');
 
 * {
   -webkit-font-smoothing: antialiased;
@@ -44,6 +45,23 @@ h2 {
   font-size: 48px;
   line-height: 110.18%;
   color: #000000;
+}
+
+h3 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+h6 {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 p {
