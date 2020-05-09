@@ -153,7 +153,7 @@
 
     <p>
       For more information, check out the official Tor Relay Guide:
-      <ExternalLink href="https://trac.torproject.org/projects/tor/wiki/TorRelayGuide">https://trac.torproject.org/projects/tor/wiki/TorRelayGuide</ExternalLink>
+      <ExternalLink href="https://community.torproject.org/relay/">https://community.torproject.org/relay/</ExternalLink>
       .
     </p>
   </Step>
