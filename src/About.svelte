@@ -74,7 +74,7 @@ div > img {
       <p class="col-lg-7">It would make sense to introduce in this body of text what this is and how to get started. The rest of this text is</p>
 
       <div class="col-lg-7"><h3 class="col-lg-4 h3-padding">Our Mission</h3></div>
-      
+
       <p class="col-lg-7">It would make sense to introduce in this body of text what this is and how to get started. The rest of this text is.
       </p>
     </div>
@@ -85,7 +85,7 @@ div > img {
   <div class="flex-child">
 
     <div class="row padding-top">
-      
+
       <div>
         <img src="../img/steve.png" width="346" height="504" alt="Image of Steve Phillips">
         <h5 class="names">Steve Phillips</h5>
