@@ -3,6 +3,7 @@
   import { Link } from 'svelte-routing';
 
   import ExternalButton from './ExternalButton.svelte';
+  import { theme } from './stores.js';
 
   // Derived from https://stackoverflow.com/a/28344281/197160
   function _hasClass(el, cls) {
@@ -45,6 +46,10 @@
       showNav();
     }
   }
+
+  const toggleTheme = () => {
+    theme.update(t => t === 'dark' ? 'light' : 'dark');
+  }
 </script>
 
 <style>
@@ -53,38 +58,87 @@
     flex-direction: row;
     justify-content: left;
     align-items: center;
-    border-bottom: 1px solid var(--neutral-100);
-    padding: 0 16px;
+    background-color: var(--bg-nav);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 20px;
     height: 64px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(8px);
   }
 
   nav a:hover {
     text-decoration: none;
   }
 
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-title {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+  }
+
   .toggle-nav-right, .nav-right {
     display: flex;
     margin-left: auto;
+    align-items: center;
+    gap: 8px;
   }
 
   .toggle-nav-right {
     display: none;
   }
 
-  nav img {
+  nav img.logo {
     display: block;
-    max-width: 32px;
-    max-height: 32px;
-    margin-right: 8px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    font-size: 16px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    cursor: pointer;
+    box-shadow: none;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+    margin-left: 8px;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--accent-primary);
+    background-color: var(--button-secondary-bg);
   }
 
   @media (max-width: 640px) {
     nav {
-      padding: 0 10px;
+      padding: 0 12px;
     }
 
     .toggle-nav-right {
       display: flex;
+      height: 36px;
+      width: 36px;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      background: transparent;
+      cursor: pointer;
     }
 
     .nav-right {
@@ -94,16 +148,17 @@
       align-items: center;
       z-index: 2;
     }
+
+    .theme-toggle {
+      margin-left: 0;
+    }
   }
 </style>
 
 <nav>
-  <Link to="/">
-    <img src="/img/tor.svg" alt="Tor-esque logo (onion)" />
-  </Link>
-
-  <Link to="/">
-    <h4>Run A Relay</h4>
+  <Link to="/" class="nav-brand">
+    <img class="logo" src="/img/tor.svg" alt="Tor-esque logo (onion)" />
+    <span class="nav-title">Run A Relay</span>
   </Link>
 
   <div class="nav-right">
@@ -112,12 +167,16 @@
     </Link>
 
     <ExternalButton href="https://github.com/EffectiveAF/run-a-relay">
-      GitHub Repo
+      GitHub
     </ExternalButton>
 
     <ExternalButton primary href="https://donate.torproject.org/">
       Donate to Tor
     </ExternalButton>
+
+    <button class="theme-toggle" on:click={toggleTheme} title="Toggle theme">
+      {#if $theme === 'dark'}☀{:else}☾{/if}
+    </button>
   </div>
 
   <img

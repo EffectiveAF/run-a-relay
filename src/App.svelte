@@ -10,8 +10,18 @@
   import Privacy from './PrivacyPolicy.svelte';
   import Footer from './Footer.svelte';
 
+  import { theme } from './stores.js';
+
   onMount(async () => {
-    // Spread the word!
+    const saved = localStorage.getItem('theme') || 'dark';
+    theme.set(saved);
+    document.documentElement.setAttribute('data-theme', saved);
+
+    theme.subscribe(t => {
+      document.documentElement.setAttribute('data-theme', t);
+      localStorage.setItem('theme', t);
+    });
+
     console.log('---');
     console.log('Receive these instructions over SSH!');
     console.log('  $ ssh runarelay.org\n');

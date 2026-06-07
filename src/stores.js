@@ -2,6 +2,8 @@ import { writable } from 'svelte/store';
 
 export const currentStepIndex = writable(0);
 
+export const theme = writable('dark');
+
 export let previousStepIndices = {prev: 0, current: 0};
 
 currentStepIndex.subscribe(newIndex => {

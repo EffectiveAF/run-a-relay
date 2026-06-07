@@ -13,9 +13,12 @@
     bottom: 0;
     left: 0;
     height: 24px;
-    margin: 24px 16px 12px 16px;
+    padding: 16px;
+    margin: 0 0 12px 0;
     justify-content: space-between;
     margin-top: 60vh;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
   }
 
   span {
@@ -32,6 +35,35 @@
     flex-direction: row;
     font-size: 12px;
     align-items: center;
+    color: var(--text-secondary);
+  }
+
+  .icon-github {
+    display: inline-block;
+    width: 25px;
+    height: 24px;
+    background-color: var(--text-secondary);
+    mask: url(/img/github_logo.svg) no-repeat center / contain;
+    -webkit-mask: url(/img/github_logo.svg) no-repeat center / contain;
+    transition: background-color 0.15s ease;
+  }
+
+  .icon-github:hover {
+    background-color: var(--text-primary);
+  }
+
+  .icon-tor {
+    display: inline-block;
+    width: 25px;
+    height: 24px;
+    background-color: var(--text-secondary);
+    mask: url(/img/tor.svg) no-repeat center / contain;
+    -webkit-mask: url(/img/tor.svg) no-repeat center / contain;
+    transition: background-color 0.15s ease;
+  }
+
+  .icon-tor:hover {
+    background-color: var(--accent-primary);
   }
 
   footer ul li:not(:first-child) {
@@ -99,9 +131,9 @@
   </ul>
 
   <div class="footer-middle">
-    <ExternalLink href="https://github.com/EffectiveAF/run-a-relay"><img src="/img/github_logo.svg" alt="Github Logo" width="25px" height="24px"></ExternalLink>
+    <ExternalLink href="https://github.com/EffectiveAF/run-a-relay"><div class="icon-github" role="img" aria-label="GitHub"></div></ExternalLink>
     <div style="width: 8px;"></div>
-    <ExternalLink href="http://vxw5mjyap4bgb4w7h7qkeknxszmgp5efjtg77mnwjtbczynihsij3myd.onion"><img src="/img/tor.svg" alt="Onion Logo; visit this site on Tor!" width="25px" height="24px"></ExternalLink>
+    <ExternalLink href="http://vxw5mjyap4bgb4w7h7qkeknxszmgp5efjtg77mnwjtbczynihsij3myd.onion"><div class="icon-tor" role="img" aria-label="Visit on Tor"></div></ExternalLink>
   </div>
 
   <ul class="list-end">

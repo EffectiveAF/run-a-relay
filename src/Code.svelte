@@ -39,24 +39,33 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    color: var(--content-inverted);
-    background-color: #21262B;
-    height: 36px;
-    border-radius: 4px;
+    color: #e6edf3;
+    background-color: var(--bg-code);
+    height: 38px;
+    border-radius: 6px;
     padding: 0 16px;
     max-width: 100%;
+    border: 1px solid #30363d;
+    font-family: "IBM Plex Mono", monospace;
   }
 
   .code-ctn img {
     margin-left: 40px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.15s ease;
+  }
+
+  .code-ctn img:hover {
+    opacity: 1;
   }
 
   code input {
-    color: var(--content-inverted);
-    background-color: #21262B;
+    color: #e6edf3;
+    background-color: var(--bg-code);
     border: none;
     min-width: 200px;
-    font-family: "IBM Plex Mono";
+    font-family: "IBM Plex Mono", monospace;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
