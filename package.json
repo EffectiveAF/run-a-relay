@@ -4,7 +4,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --single"
+    "start": "sirv public --single --port 3000"
   },
   "license": "SEE LICENSE IN LICENSE.md",
   "devDependencies": {
