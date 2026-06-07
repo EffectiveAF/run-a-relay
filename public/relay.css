@@ -1,57 +1,8 @@
-/* Needed to style Nav's child components */
-.nav-right button {
-  margin-left: 16px;
-}
-
-/* Needed to style link to site title */
-nav > a > h1, nav > a > h2, nav > a > h3, nav > a > h4 {
-  color: var(--text-primary);
-}
-
-/* Steady class name needed for dynamic show/hide of .nav-right on mobile */
-.nav-right.show-right-nav-mobile {
-  display: flex;
-  position: fixed;
-  top: 64px;
-  right: 0;
-  width: 240px;
-  z-index: 2;
-  background-color: var(--bg-mobile-nav);
-  border-left: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-  box-shadow: -4px 8px 24px var(--shadow-color);
-}
-.nav-right.show-right-nav-mobile button {
-  margin: 12px 0;
-}
-
+/* theme-toggle icon responds to theme */
 .toggle-nav-right {
-  min-width: 24px;
-  background-color: var(--text-primary);
+  background-color: var(--text);
   mask: url(/img/hamburger_menu.svg) no-repeat center / contain;
   -webkit-mask: url(/img/hamburger_menu.svg) no-repeat center / contain;
-}
-
-/* Used in static-ish pages (/about, /terms, /privacy) */
-.static-content {
-  padding: var(--margin-left-default);
-  max-width: 80%;
-}
-@media (max-width: 640px) {
-  .static-content {
-    padding: calc(var(--margin-left-default) / 2);
-    max-width: 96%;
-  }
-}
-.static-content h3 {
-  font-weight: 600;
-}
-.static-content ul {
-  margin-left: 30px;
-}
-.static-content li, .static-content p {
-  margin-top: 15px;
-}
-.static-content a:hover {
-  text-decoration: underline;
+  min-width: 20px;
+  height: 20px;
 }

@@ -1,193 +1,168 @@
 <script>
-  import { onMount } from 'svelte';
   import { Link } from 'svelte-routing';
-
-  import ExternalButton from './ExternalButton.svelte';
   import { theme } from './stores.js';
 
-  // Derived from https://stackoverflow.com/a/28344281/197160
-  function _hasClass(el, cls) {
-    return !!el.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
-  }
-  function _addClass(el, cls) {
-    if (!_hasClass(el, cls)) {
-      el.className += ' ' + cls;
-    }
-  }
-  function _removeClass(el, cls) {
-    if (_hasClass(el,cls)) {
-      var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
-      el.className = el.className.replace(reg, '');
-    }
-  }
+  const toggleTheme = () => theme.update(t => t === 'dark' ? 'light' : 'dark');
 
-  // Styling in public/relay.css
-  const _toggleClass = 'show-right-nav-mobile';
-
-  // Used in helpers below
-  let _navRight;
-  onMount(async () => {
-    _navRight = document.getElementsByClassName('nav-right')[0];
-  })
-
-  const collapseNav = () => {
-    _navRight.style.visibility = 'hidden';
-    _removeClass(_navRight, _toggleClass);
-  }
-  const showNav = () => {
-    _navRight.style.visibility = 'visible';
-    _addClass(_navRight, _toggleClass);
-  }
-
-  const toggleNavRight = (e) => {
-    if (_hasClass(_navRight, _toggleClass)) {
-      collapseNav();
-    } else {
-      showNav();
-    }
-  }
-
-  const toggleTheme = () => {
-    theme.update(t => t === 'dark' ? 'light' : 'dark');
-  }
+  let mobileOpen = false;
+  const toggleMobile = () => mobileOpen = !mobileOpen;
 </script>
 
 <style>
   nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    background-color: var(--bg-nav);
-    border-bottom: 1px solid var(--border-color);
-    padding: 0 20px;
-    height: 64px;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 10;
-    backdrop-filter: blur(8px);
+    left: 0;
+    right: 0;
+    height: var(--nav-h);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
   }
 
-  nav a:hover {
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
     text-decoration: none;
+    flex-shrink: 0;
   }
 
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .brand img {
+    width: 24px;
+    height: 24px;
+    opacity: 0.85;
   }
 
-  .nav-title {
-    font-size: 16px;
-    font-weight: 700;
+  .brand-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
     letter-spacing: -0.01em;
-    color: var(--text-primary);
   }
 
-  .toggle-nav-right, .nav-right {
+  .divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border-strong);
+    margin: 0 16px;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-2);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .spacer { flex: 1; }
+
+  .nav-actions {
     display: flex;
-    margin-left: auto;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
   }
 
-  .toggle-nav-right {
-    display: none;
+  .nav-link {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--text-2);
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    transition: color 0.12s, background 0.12s;
   }
 
-  nav img.logo {
-    display: block;
-    width: 28px;
-    height: 28px;
+  .nav-link:hover {
+    color: var(--text);
+    background: var(--bg-hover);
   }
 
-  .theme-toggle {
+  .btn-donate {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+    padding: 0 12px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: filter 0.12s, box-shadow 0.12s;
+    box-shadow: 0 2px 8px var(--accent-glow);
+    white-space: nowrap;
+  }
+
+  .btn-donate:hover {
+    color: #fff;
+    filter: brightness(1.1);
+    box-shadow: 0 4px 14px var(--accent-glow);
+  }
+
+  .theme-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    color: var(--text-2);
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
-    padding: 0;
-    font-size: 16px;
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    color: var(--text-primary);
     cursor: pointer;
     box-shadow: none;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
-    margin-left: 8px;
+    transition: background 0.12s, border-color 0.12s;
   }
 
-  .theme-toggle:hover {
-    border-color: var(--accent-primary);
-    background-color: var(--button-secondary-bg);
+  .theme-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text);
   }
 
   @media (max-width: 640px) {
-    nav {
-      padding: 0 12px;
-    }
-
-    .toggle-nav-right {
-      display: flex;
-      height: 36px;
-      width: 36px;
-      padding: 0;
-      border: none;
-      box-shadow: none;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .nav-right {
-      visibility: hidden;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 2;
-    }
-
-    .theme-toggle {
-      margin-left: 0;
-    }
+    .hide-mobile { display: none; }
   }
 </style>
 
 <nav>
-  <Link to="/" class="nav-brand">
-    <img class="logo" src="/img/tor.svg" alt="Tor-esque logo (onion)" />
-    <span class="nav-title">Run A Relay</span>
+  <Link to="/" class="brand">
+    <img src="/img/tor.svg" alt="Tor onion logo" />
+    <span class="brand-name">Run A Relay</span>
   </Link>
 
-  <div class="nav-right">
-    <Link to="/about">
-      <button class="secondary hvr-ripple-out-sec">About</button>
-    </Link>
+  <div class="divider"></div>
+  <span class="badge">Guide</span>
 
-    <ExternalButton href="https://github.com/EffectiveAF/run-a-relay">
-      GitHub
-    </ExternalButton>
+  <div class="spacer"></div>
 
-    <ExternalButton primary href="https://donate.torproject.org/">
-      Donate to Tor
-    </ExternalButton>
+  <div class="nav-actions">
+    <Link to="/about" class="nav-link hide-mobile">About</Link>
 
-    <button class="theme-toggle" on:click={toggleTheme} title="Toggle theme">
+    <a
+      class="nav-link hide-mobile"
+      href="https://github.com/EffectiveAF/run-a-relay"
+      target="_blank"
+      rel="noopener noreferrer"
+    >GitHub</a>
+
+    <a
+      class="btn-donate hide-mobile"
+      href="https://donate.torproject.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Donate ↗</a>
+
+    <button class="theme-btn" on:click={toggleTheme} title="Toggle theme">
       {#if $theme === 'dark'}☀{:else}☾{/if}
     </button>
   </div>
-
-  <img
-    class="toggle-nav-right"
-    src="/img/hamburger_menu.svg"
-    alt="Hamburger Menu"
-    tabindex="1"
-    on:click={toggleNavRight}
-    on:blur={() => {
-      // TODO: Remove this race condition hack
-      setTimeout(collapseNav, 250);
-    }}
-  />
 </nav>
