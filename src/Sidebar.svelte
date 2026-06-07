@@ -67,7 +67,7 @@
     gap: 8px;
     width: 100%;
     height: 32px;
-    padding: 0 12px 0 20px;
+    padding: 0 12px 0 16px;
     font-size: 0.875rem;     /* 14px — Linear's exact size */
     font-weight: 400;
     color: var(--text-2);
