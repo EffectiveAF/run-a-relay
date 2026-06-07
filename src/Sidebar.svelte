@@ -4,15 +4,16 @@
   import slugOrder from './slugOrder.js';
 
   const steps = [
-    { slug: 'intro',            title: 'Introduction' },
-    { slug: 'relay-or-donate',  title: 'Run or Donate?' },
-    { slug: 'choosing-a-host',  title: 'Choosing a Host' },
-    { slug: 'install-tor-daemon', title: 'Install Tor' },
-    { slug: 'thank-you',        title: "You're Done!" },
+    { slug: 'intro',             title: 'Getting started'  },
+    { slug: 'relay-or-donate',   title: 'Run or donate?'   },
+    { slug: 'choosing-a-host',   title: 'Choosing a host'  },
+    { slug: 'install-tor-daemon',title: 'Install Tor'       },
+    { slug: 'thank-you',         title: "You're done!"      },
   ];
 
   const goToStep = (slug, idx) => {
     $currentStepIndex = idx;
+    currentPath.set(`/step/${slug}`);
     navigate(`/step/${slug}`);
   };
 
@@ -30,95 +31,119 @@
     height: calc(100vh - var(--nav-h));
     overflow-y: auto;
     border-right: 1px solid var(--border);
-    padding: 24px 0 40px;
+    padding: 16px 0 48px;
+    background: var(--bg);
     display: flex;
     flex-direction: column;
-    background: var(--bg);
     scrollbar-width: thin;
     scrollbar-color: var(--border-strong) transparent;
   }
 
-  aside::-webkit-scrollbar { width: 4px; }
-  aside::-webkit-scrollbar-track { background: transparent; }
+  aside::-webkit-scrollbar { width: 3px; }
   aside::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
 
-  .section-label {
-    display: block;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    padding: 16px 16px 6px;
-    margin-top: 8px;
+  /* Section group */
+  .group { margin-top: 4px; }
+  .group:first-child { margin-top: 0; }
+
+  /* Section header — collapsible row like Linear */
+  .group-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 12px 6px 16px;
+    font-size: 0.8125rem;   /* 13px */
+    font-weight: 500;
+    color: var(--text-2);
+    cursor: default;
+    user-select: none;
   }
 
-  .section-label:first-child { margin-top: 0; }
-
-  nav-item, a.nav-item {
+  /* Nav item — matches Linear's 32px-tall, 14px items */
+  .item {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 16px;
-    font-size: 0.85rem;
+    width: 100%;
+    height: 32px;
+    padding: 0 12px 0 20px;
+    font-size: 0.875rem;     /* 14px — Linear's exact size */
     font-weight: 400;
     color: var(--text-2);
-    text-decoration: none;
+    background: none;
+    border: none;
     border-radius: 0;
+    text-align: left;
+    text-decoration: none;
     cursor: pointer;
     transition: color 0.1s, background 0.1s;
-    border: none;
-    background: none;
-    width: 100%;
-    text-align: left;
-    line-height: 1.4;
+    box-shadow: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
   }
 
-  a.nav-item:hover, button.nav-item:hover {
+  .item:hover {
     color: var(--text);
     background: var(--bg-hover);
   }
 
-  a.nav-item.active, button.nav-item.active {
+  .item.active {
     color: var(--text);
     font-weight: 500;
-    background: var(--bg-active);
-    position: relative;
+    background: var(--bg-hover);
   }
 
-  a.nav-item.active::before, button.nav-item.active::before {
+  /* Accent left bar on active item */
+  .item.active::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 4px;
-    bottom: 4px;
+    top: 6px;
+    bottom: 6px;
     width: 2px;
     background: var(--accent);
-    border-radius: 0 2px 2px 0;
+    border-radius: 0 1px 1px 0;
   }
 
-  .step-number {
+  /* Step icon — small circle with number, like Linear's page icon */
+  .icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    font-size: 0.65rem;
+    font-size: 0.6875rem;
     font-weight: 600;
-    flex-shrink: 0;
-    background: var(--border-strong);
+    background: var(--bg-subtle);
     color: var(--text-3);
+    transition: background 0.1s, color 0.1s;
   }
 
-  .step-number.active {
+  .item.active .icon {
     background: var(--accent);
     color: #fff;
   }
 
-  .step-number.done {
-    background: var(--bg-active);
-    color: var(--accent-light);
+  /* External-link suffix */
+  .ext {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--text-3);
+    opacity: 0;
+    transition: opacity 0.1s;
+  }
+
+  .item:hover .ext { opacity: 1; }
+
+  /* Spacer between main groups and bottom links */
+  .bottom-group {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
   }
 
   @media (max-width: 900px) {
@@ -127,40 +152,48 @@
 </style>
 
 <aside>
-  <span class="section-label">Overview</span>
 
-  <Link to="/">
-    <a class="nav-item" class:active={isHome} href="/">
-      Getting Started
+  <!-- Overview -->
+  <div class="group">
+    <div class="group-label">Overview</div>
+
+    <a class="item" class:active={isHome} href="/">
+      <span class="icon">H</span>
+      Home
     </a>
-  </Link>
+  </div>
 
-  <span class="section-label">Guide</span>
+  <!-- Guide steps -->
+  <div class="group">
+    <div class="group-label">Guide</div>
 
-  {#each steps as step, i}
-    <button
-      class="nav-item"
-      class:active={isOnStep && $currentStepIndex === i}
-      on:click={() => goToStep(step.slug, i)}
-    >
-      <span class="step-number" class:active={isOnStep && $currentStepIndex === i} class:done={isOnStep && $currentStepIndex > i}>
-        {i + 1}
-      </span>
-      {step.title}
-    </button>
-  {/each}
+    {#each steps as step, i}
+      <button
+        class="item"
+        class:active={isOnStep && $currentStepIndex === i}
+        on:click={() => goToStep(step.slug, i)}
+      >
+        <span class="icon">{i + 1}</span>
+        {step.title}
+      </button>
+    {/each}
+  </div>
 
-  <span class="section-label">More</span>
+  <!-- More links at bottom -->
+  <div class="group bottom-group">
+    <a class="item" class:active={isAbout} href="/about">
+      About
+    </a>
 
-  <Link to="/about">
-    <a class="nav-item" class:active={isAbout} href="/about">About</a>
-  </Link>
+    <a class="item" href="https://github.com/EffectiveAF/run-a-relay" target="_blank" rel="noopener noreferrer">
+      GitHub
+      <span class="ext">↗</span>
+    </a>
 
-  <a class="nav-item" href="https://github.com/EffectiveAF/run-a-relay" target="_blank" rel="noopener noreferrer">
-    GitHub ↗
-  </a>
+    <a class="item" href="https://donate.torproject.org/" target="_blank" rel="noopener noreferrer">
+      Donate to Tor
+      <span class="ext">↗</span>
+    </a>
+  </div>
 
-  <a class="nav-item" href="https://donate.torproject.org/" target="_blank" rel="noopener noreferrer">
-    Donate to Tor ↗
-  </a>
 </aside>

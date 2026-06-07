@@ -3,27 +3,18 @@
   import { currentPath } from './stores.js';
 
   export let location;
-
   onMount(() => currentPath.set('/privacy'));
 </script>
 
 <style>
-  .page {
-    padding: 48px 48px 80px;
-    max-width: 680px;
-  }
-
   .page-header {
-    margin-bottom: 32px;
-    padding-bottom: 20px;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
     border-bottom: 1px solid var(--border);
   }
-
-  @media (max-width: 900px) { .page { padding: 32px 24px 64px; } }
-  @media (max-width: 640px) { .page { padding: 24px 16px 48px; } }
 </style>
 
-<div class="page">
+<div class="page-content">
   <div class="page-header">
     <h1>Privacy Policy</h1>
   </div>

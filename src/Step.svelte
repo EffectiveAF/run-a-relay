@@ -16,77 +16,46 @@
     );
   }
 
-  const _forward = { x: 40, duration: 300 };
-  const _back    = { x: -40, duration: 300 };
-
   const transition = () =>
-    $currentStepIndex >= previousStepIndices.prev ? _forward : _back;
+    $currentStepIndex >= previousStepIndices.prev
+      ? { x: 32, duration: 260 }
+      : { x: -32, duration: 260 };
 </script>
 
 <style>
-  .step {
-    padding: 48px 48px 80px;
-    max-width: 720px;
+  .step-header {
+    margin-bottom: 28px;
   }
 
-  .step-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-
-  .step-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: #fff;
-    font-size: 0.7rem;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  .step-label {
+  .step-eyebrow {
     font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
   }
 
   h2 {
-    font-size: 1.625rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    margin: 0 0 28px;
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin: 0;
+    color: var(--text);
   }
 
-  .step-body {
-    min-height: 160px;
-  }
-
-  @media (max-width: 900px) {
-    .step { padding: 32px 24px 64px; }
-  }
-
-  @media (max-width: 640px) {
-    .step { padding: 24px 16px 48px; }
-    h2 { font-size: 1.375rem; }
-  }
+  .step-body { }
 </style>
 
 {#if slugOrder[$currentStepIndex] === slug}
-  <div class="step" in:fly={transition()}>
-    <div class="step-meta">
-      <span class="step-badge">{slugOrder.indexOf(slug) + 1}</span>
-      <span class="step-label">Step {slugOrder.indexOf(slug) + 1} of {slugOrder.length}</span>
+  <div in:fly={transition()}>
+    <div class="step-header">
+      <span class="step-eyebrow">
+        Step {slugOrder.indexOf(slug) + 1} of {slugOrder.length}
+      </span>
+      <h2>{@html title}</h2>
     </div>
-
-    <h2>{title}</h2>
 
     <div class="step-body">
       <slot>(instructions go here)</slot>

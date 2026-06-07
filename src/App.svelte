@@ -23,39 +23,9 @@
       localStorage.setItem('theme', t);
     });
 
-    console.log('---');
-    console.log('Receive these instructions over SSH!');
-    console.log('  $ ssh runarelay.org\n');
-    console.log('SSH fingerprint: SHA256:Cr/E7i8gvmuHsUUV4GNXSoXBVR1zKC3dSb/k3mGUC+w');
-    console.log('---');
+    console.log('SSH: ssh runarelay.org');
   });
 </script>
-
-<style>
-  .app-shell {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-
-  .app-body {
-    display: flex;
-    flex: 1;
-    padding-top: var(--nav-h);
-  }
-
-  .content-offset {
-    margin-left: var(--sidebar-w);
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  @media (max-width: 900px) {
-    .content-offset { margin-left: 0; }
-  }
-</style>
 
 <Router>
   <div class="app-shell">
@@ -64,7 +34,7 @@
     <div class="app-body">
       <Sidebar />
 
-      <div class="content-offset">
+      <div class="content-area">
         <Route path="/">
           <Home />
         </Route>

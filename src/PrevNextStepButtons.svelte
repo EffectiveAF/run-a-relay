@@ -3,16 +3,17 @@
   import { currentStepIndex, currentPath } from './stores.js';
   import slugOrder from './slugOrder.js';
 
-  const navPrevious = () => {
-    $currentStepIndex--;
-    const slug = slugOrder[$currentStepIndex];
-    currentPath.set(`/step/${slug}`);
-    navigate(`/step/${slug}`);
-  };
+  const stepTitles = [
+    'Getting started',
+    'Run or donate?',
+    'Choosing a host',
+    'Install Tor',
+    "You're done!",
+  ];
 
-  const navNext = () => {
-    $currentStepIndex++;
-    const slug = slugOrder[$currentStepIndex];
+  const navTo = (idx) => {
+    $currentStepIndex = idx;
+    const slug = slugOrder[idx];
     currentPath.set(`/step/${slug}`);
     navigate(`/step/${slug}`);
   };
@@ -21,83 +22,68 @@
 <style>
   .prev-next {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    padding: 0 48px 64px;
-    max-width: 720px;
+    padding-top: 32px;
+    margin-top: 40px;
     border-top: 1px solid var(--border);
-    margin-top: 16px;
-    padding-top: 24px;
+    gap: 16px;
   }
 
-  .nav-btn {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .nav-btn.next { align-items: flex-end; }
+  .nav-side { display: flex; flex-direction: column; gap: 4px; max-width: 48%; }
+  .nav-side.right { align-items: flex-end; text-align: right; }
 
   .nav-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     color: var(--text-3);
   }
 
-  .nav-title {
+  .nav-btn {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--accent-light);
-    cursor: pointer;
     background: none;
     border: none;
     padding: 0;
     box-shadow: none;
     height: auto;
     border-radius: 0;
-    transition: color 0.12s;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.1s;
+    white-space: normal;
+    line-height: 1.4;
   }
 
-  .nav-title:hover {
-    color: var(--text);
-    background: none;
-  }
+  .nav-side.right .nav-btn { text-align: right; }
 
-  .placeholder { width: 1px; }
-
-  @media (max-width: 900px) {
-    .prev-next { padding-left: 24px; padding-right: 24px; }
-  }
-
-  @media (max-width: 640px) {
-    .prev-next { padding-left: 16px; padding-right: 16px; }
-  }
+  .nav-btn:hover { color: var(--text); background: none; }
+  .placeholder { flex: 1; }
 </style>
 
 <svelte:window
   on:popstate={() => {
-    const maybeStep = document.location.pathname
-      .slice('/step/'.length)
-      .match(/[\w\-]+/);
-    if (!maybeStep || maybeStep.length !== 1) return;
-    const idx = slugOrder.indexOf(maybeStep[0]);
-    if (idx !== -1) $currentStepIndex = idx;
+    const m = document.location.pathname.slice('/step/'.length).match(/[\w-]+/);
+    if (m) {
+      const idx = slugOrder.indexOf(m[0]);
+      if (idx !== -1) $currentStepIndex = idx;
+    }
   }}
   on:keydown={(e) => {
     if (e.target.tagName !== 'BODY' || e.altKey) return;
-    if ($currentStepIndex > 0 && e.key === 'ArrowLeft') { navPrevious(); return; }
-    if ($currentStepIndex < slugOrder.length - 1 && e.key === 'ArrowRight') { navNext(); return; }
+    if (e.key === 'ArrowLeft'  && $currentStepIndex > 0)                    navTo($currentStepIndex - 1);
+    if (e.key === 'ArrowRight' && $currentStepIndex < slugOrder.length - 1) navTo($currentStepIndex + 1);
   }}
 />
 
 <div class="prev-next">
   {#if $currentStepIndex > 0}
-    <div class="nav-btn prev">
+    <div class="nav-side left">
       <span class="nav-label">← Previous</span>
-      <button class="nav-title" on:click={navPrevious}>
-        {slugOrder[$currentStepIndex - 1].replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+      <button class="nav-btn" on:click={() => navTo($currentStepIndex - 1)}>
+        {stepTitles[$currentStepIndex - 1]}
       </button>
     </div>
   {:else}
@@ -105,10 +91,10 @@
   {/if}
 
   {#if $currentStepIndex < slugOrder.length - 1}
-    <div class="nav-btn next">
+    <div class="nav-side right">
       <span class="nav-label">Next →</span>
-      <button class="nav-title" on:click={navNext}>
-        {slugOrder[$currentStepIndex + 1].replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+      <button class="nav-btn" on:click={() => navTo($currentStepIndex + 1)}>
+        {stepTitles[$currentStepIndex + 1]}
       </button>
     </div>
   {:else}
