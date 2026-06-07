@@ -10,7 +10,7 @@
   import ExternalLink        from './ExternalLink.svelte';
   import ExternalButton      from './ExternalButton.svelte';
   import PrevNextStepButtons from './PrevNextStepButtons.svelte';
-  import { serverHosts, chooseRandomHosts } from './serverHosts.js';
+  import { serverHosts } from './serverHosts.js';
 
   onMount(() => {
     currentPath.set(window.location.pathname);
@@ -28,8 +28,6 @@
       `${h.name}: <a href="${h.url}" target="_blank" rel="nofollow noreferrer noopener">${h.url}</a> (${h.country})`
     ).join('<br />');
 
-  const numSuggested = 3;
-  let viewAll = false;
 </script>
 
 <style>
@@ -87,19 +85,8 @@
 
 
     <Step slug="choosing-a-host" title="Choosing a host">
-      <p>
-        Server providers to consider — refresh for another {numSuggested} random providers
-        from our curated list:
-      </p>
-
-      {#if viewAll}
-        <div class="host-list">{@html displayHosts(serverHosts)}</div>
-      {:else}
-        <div class="host-list">{@html displayHosts(chooseRandomHosts(numSuggested))}</div>
-        <p style="margin-top: 10px;">
-          <button on:click={() => viewAll = true}>View all providers</button>
-        </p>
-      {/if}
+      <p>Server providers to consider:</p>
+      <div class="host-list">{@html displayHosts(serverHosts)}</div>
     </Step>
 
 
