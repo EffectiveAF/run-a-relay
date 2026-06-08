@@ -140,9 +140,10 @@
 
   .item:hover .ext { opacity: 1; }
 
+  .spacer { flex: 1; }
+
   /* Spacer between main groups and bottom links */
   .bottom-group {
-    margin-top: auto;
     padding-top: 16px;
     border-top: 1px solid var(--border);
   }
@@ -180,8 +181,10 @@
     {/each}
   </div>
 
+  <div class="spacer"></div>
+
   <!-- More links at bottom -->
-  <div class="group bottom-group">
+  <div class="bottom-group">
     <a class="item" class:active={isAbout} href="/about">
       About
     </a>
