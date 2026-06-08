@@ -1,5 +1,7 @@
 ## Run A Relay
 
+![Run A Relay screenshot](public/img/screenshot.png)
+
 Run A Relay is a web app that gives you simple instructions for
 running a relay for the [Tor](https://www.torproject.org) anonymity
 network!
