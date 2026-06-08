@@ -119,7 +119,7 @@
       </p>
       <p style="margin-top: 20px;">
         For more info:
-        <ExternalLink href="https://trac.torproject.org/projects/tor/wiki/TorRelayGuide">Tor Relay Guide ↗</ExternalLink>
+        <ExternalLink href="https://community.torproject.org/relay/">Tor Relay Guide ↗</ExternalLink>
       </p>
     </Step>
 
