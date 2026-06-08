@@ -1,112 +1,156 @@
 <script>
-  import { Link } from 'svelte-routing';
-  import ExternalLink from './ExternalLink.svelte';
 </script>
 
 <style>
-
   footer {
     display: flex;
-    flex-direction: row;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 24px;
-    margin: 24px 16px 12px 16px;
-    justify-content: space-between;
-    margin-top: 60vh;
-  }
-
-  span {
-    content: "\2764";
-  }
-
-  footer ul, footer > .footer-middle {
-    display: flex;
-    flex: 1;
-  }
-
-  footer ul, footer ul li {
-    display: flex;
-    flex-direction: row;
-    font-size: 12px;
     align-items: center;
+    border-top: 1px solid var(--border);
+    height: 56px;
   }
 
-  footer ul li:not(:first-child) {
-    padding-left: 24px;
+  /* Left zone — fixed width matching sidebar */
+  .footer-left {
+    display: flex;
+    align-items: center;
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    padding: 0 16px 0 20px;
   }
 
-  footer > .footer-middle {
+  .footer-left span {
+    font-size: 0.8125rem;
+    color: var(--text-2);
+    white-space: nowrap;
+  }
+
+  /* Vertical divider, same as nav */
+  .v-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border-strong);
+    flex-shrink: 0;
+  }
+
+  /* Center — links */
+  .footer-center {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .footer-link {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    padding: 0 8px;
+    font-size: 0.8125rem;
+    color: var(--text-3);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: color 0.1s, background 0.1s;
+    white-space: nowrap;
+  }
+
+  .footer-link:hover {
+    color: var(--text-2);
+    background: var(--bg-hover);
+  }
+
+  /* Right — icons */
+  .footer-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    flex-shrink: 0;
+  }
+
+  .icon-link {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    transition: background 0.1s;
   }
 
-  .list-end {
-    justify-content: flex-end;
+  .icon-link:hover { background: var(--bg-hover); }
+
+  .icon-github {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: var(--text-3);
+    mask: url(/img/github_logo.svg) no-repeat center / contain;
+    -webkit-mask: url(/img/github_logo.svg) no-repeat center / contain;
+    transition: background-color 0.1s;
   }
 
-  @media (max-width: 1200px) {
-    footer {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin-top: 50vh;
-    }
+  .icon-link:hover .icon-github { background-color: var(--text-2); }
 
-    footer ul {
-      padding-top: 24px;
-    }
-
-    footer ul:last-child {
-      padding-bottom: 24px;
-    }
-
-    footer a img {
-      margin: 0;
-    }
-
-    footer > .footer-middle {
-      order: -1;
-    }
-
-    .list-end {
-      justify-content: center;
-    }
-
-    @media (max-width: 600px) {
-      .hide-xsmall {
-        display: none;
-      }
-    }
+  .icon-tor {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: var(--text-3);
+    mask: url(/img/tor.svg) no-repeat center / contain;
+    -webkit-mask: url(/img/tor.svg) no-repeat center / contain;
+    transition: background-color 0.1s;
   }
 
+  .icon-link:hover .icon-tor { background-color: var(--accent-light); }
+
+  @media (max-width: 900px) {
+    .footer-left { display: none; }
+    .v-divider   { display: none; }
+    .footer-center { padding: 0 16px; }
+  }
+
+  @media (max-width: 640px) {
+    footer { height: auto; padding: 12px 0; flex-wrap: wrap; }
+    .footer-center { flex-wrap: wrap; }
+  }
 </style>
 
 <footer>
-
-  <ul>
-    <li>© 2020&nbsp;<ExternalLink href="https://effective.af/">EffectiveAF</ExternalLink></li>
-
-    <li><Link to="/terms">Terms</Link></li>
-
-    <li><Link to="/privacy"><li>Privacy</li></Link></li>
-
-    <li class="hide-xsmall"><Link to="/about">About</Link></li>
-
-    <li class="hide-xsmall"><ExternalLink href="https://donate.torproject.org/">Donate to Tor</ExternalLink></li>
-  </ul>
-
-  <div class="footer-middle">
-    <ExternalLink href="https://github.com/EffectiveAF/run-a-relay"><img src="/img/github_logo.svg" alt="Github Logo" width="25px" height="24px"></ExternalLink>
-    <div style="width: 8px;"></div>
-    <ExternalLink href="http://vxw5mjyap4bgb4w7h7qkeknxszmgp5efjtg77mnwjtbczynihsij3myd.onion"><img src="/img/tor.svg" alt="Onion Logo; visit this site on Tor!" width="25px" height="24px"></ExternalLink>
+  <!-- Left: copyright — aligns with sidebar -->
+  <div class="footer-left">
+    <span>© 2020 EffectiveAF</span>
   </div>
 
-  <ul class="list-end">
-    <li>Made by&nbsp;<ExternalLink href="https://github.com/elimisteve">Steve Phillips</ExternalLink>&nbsp;&&nbsp;<ExternalLink href="https://github.com/timsully">Tim Sullivan</ExternalLink>&nbsp;with&nbsp;<span>&#10084;</span>
-    </li>
-  </ul>
+  <div class="v-divider"></div>
 
+  <!-- Center: nav links -->
+  <div class="footer-center">
+    <a class="footer-link" href="/terms">Terms</a>
+    <a class="footer-link" href="/privacy">Privacy</a>
+    <a class="footer-link" href="/about">About</a>
+  </div>
+
+  <!-- Right: icons -->
+  <div class="footer-right">
+    <a
+      class="icon-link"
+      href="https://github.com/EffectiveAF/run-a-relay"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub"
+    >
+      <div class="icon-github"></div>
+    </a>
+    <a
+      class="icon-link"
+      href="http://vxw5mjyap4bgb4w7h7qkeknxszmgp5efjtg77mnwjtbczynihsij3myd.onion"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Visit on Tor"
+    >
+      <div class="icon-tor"></div>
+    </a>
+  </div>
 </footer>

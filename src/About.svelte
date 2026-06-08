@@ -1,106 +1,111 @@
 <script>
+  import { onMount } from 'svelte';
+  import { currentPath } from './stores.js';
   import ExternalLink from './ExternalLink.svelte';
 
-  export let location;  // implicitly populated by router
+  export let location;
+  onMount(() => currentPath.set('/about'));
 </script>
 
 <style>
-.flex-container {
-  display: flex;
-}
+  .page-header {
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid var(--border);
+  }
 
-.flex-child {
-  flex: 1;
-}
+  .page-header p {
+    color: var(--text-2);
+    margin: 6px 0 0;
+    font-size: 0.9375rem;
+  }
 
-.flex-child:first-child {
-  margin-right: 48px;
-}
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 16px;
+  }
 
-.h3-padding {
-  padding: 56px 0px 8px 0px;
-}
+  @media (max-width: 480px) {
+    .team-grid { grid-template-columns: 1fr; }
+  }
 
-.padding-top {
-  margin-top: 104px;
-}
+  .team-card {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.12s;
+  }
 
-div > img:first-child {
-  margin-right: 56px;
-}
+  .team-card:hover { border-color: var(--border-strong); }
 
-div > img {
-  border-radius: 4px;
-}
+  .team-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
 
-.names {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  padding-top: 4px;
-  display: flex;
-  justify-content: center;
-  width: 346px;
-}
+  .team-info {
+    padding: 14px 16px;
+  }
 
-.names:first-child {
-  margin-right: 64px;
-}
+  .team-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
 
-.align-center {
-  display: flex;
-  justify-content: center;
-  width: 346px;
-  padding-top: 8px;
-}
+  .team-role {
+    font-size: 0.8rem;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
 </style>
 
+<div class="page-content">
 
-<div class="container-fluid flex-container">
-
-  <div class="flex-child">
-
-    <div class="col-lg-8 col-lg-offset-2">
-      <h1 class="padding-top">Creating a better future, together.</h1>
-    </div>
-
-
-    <div class="col-lg-offset-2">
-      <div class="col-lg-7">
-        <h3 class="col-lg-4 h3-padding">Who we are</h3>
-      </div>
-
-      <p class="col-lg-7">It would make sense to introduce in this body of text what this is and how to get started. The rest of this text is</p>
-
-      <div class="col-lg-7"><h3 class="col-lg-4 h3-padding">Our Mission</h3></div>
-      
-      <p class="col-lg-7">It would make sense to introduce in this body of text what this is and how to get started. The rest of this text is.
-      </p>
-    </div>
-
+  <div class="page-header">
+    <h1>Creating a better future, together.</h1>
+    <p>A free, open-source guide to running Tor relays and protecting internet privacy.</p>
   </div>
 
+  <h2>Who we are</h2>
+  <p>
+    We're a small team of engineers and designers who believe the internet should
+    remain free and private for everyone. Run A Relay was built to lower the barrier
+    to contributing to the Tor network.
+  </p>
 
-  <div class="flex-child">
+  <h2>Our mission</h2>
+  <p>
+    To make it as easy as possible for anyone with a spare $10/month and 30 minutes
+    to spin up a Tor relay — strengthening the network one node at a time.
+  </p>
 
-    <div class="row padding-top">
-      
-      <div>
-        <img src="../img/steve.png" width="346" height="504" alt="Image of Steve Phillips">
-        <h5 class="names">Steve Phillips</h5>
-        <h6 class="align-center">Founder of Effective.AF</h6>
-      </div>
-
-      <div>
-        <img src="../img/tim.png" width="346" height="504" alt="Image of Tim Sullivan">
-        <h5 class="names">Tim Sullivan</h5>
-        <h6 class="align-center">Design Technologist</h6>
+  <h2>The team</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <img src="../img/steve.png" alt="Steve Phillips" />
+      <div class="team-info">
+        <div class="team-name">Steve Phillips</div>
+        <div class="team-role">
+          Founder, <ExternalLink href="https://effective.af/">Effective.AF</ExternalLink>
+        </div>
       </div>
     </div>
 
-    <!-- second flex child endpoint -->
+    <div class="team-card">
+      <img src="../img/tim.png" alt="Tim Sullivan" />
+      <div class="team-info">
+        <div class="team-name">Tim Sullivan</div>
+        <div class="team-role">Design Technologist</div>
+      </div>
+    </div>
   </div>
 
-  <!-- container endpoint -->
 </div>

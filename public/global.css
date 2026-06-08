@@ -1,253 +1,226 @@
 @import url('reset.css');
 @import url('fonts.css');
-@import url('relay.css?v=59');
-@import url('flexbox.css');
 
 * {
+  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Dark (default) ─────────────────────────────── */
 :root {
-  --button-primary: #8E22C3;
-  --content-default: #000;
-  --content-inverted: #fff;
-  --neutral-100: #f0f0f0;
+  --bg:            #08090a;
+  --bg-raised:     #111216;
+  --bg-subtle:     #16171c;
+  --bg-code:       #0d0e11;
+  --bg-hover:      rgba(255,255,255,0.04);
+  --bg-active:     rgba(120,87,255,0.1);
 
-  --margin-left-default: 30px;
-  --margin-left-default-mobile: 15px;
+  --text:          #f7f8f8;
+  --text-body:     #d0d6e0;
+  --text-2:        #8a8f98;
+  --text-3:        #4e535c;
+
+  --border:        rgba(255,255,255,0.07);
+  --border-strong: rgba(255,255,255,0.11);
+
+  --accent:        #7857ff;
+  --accent-light:  #9b7fff;
+  --accent-glow:   rgba(120,87,255,0.22);
+
+  --sidebar-w:     280px;
+  --nav-h:         64px;
+}
+
+/* ── Light ──────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:            #ffffff;
+  --bg-raised:     #f5f5f8;
+  --bg-subtle:     #ebebf0;
+  --bg-code:       #0d0e11;
+  --bg-hover:      rgba(0,0,0,0.035);
+  --bg-active:     rgba(94,63,204,0.06);
+
+  --text:          #1c1c22;
+  --text-body:     #3a3a48;
+  --text-2:        #6b6b80;
+  --text-3:        #a0a0b0;
+
+  --border:        rgba(0,0,0,0.06);
+  --border-strong: rgba(0,0,0,0.1);
+
+  --accent:        #5e3fcc;
+  --accent-light:  #5e3fcc;
+  --accent-glow:   rgba(94,63,204,0.14);
+}
+
+/* ── Base ───────────────────────────────────────── */
+html {
+  transition: background-color 0.18s, color 0.18s;
 }
 
 html, body {
-  position: relative;
   width: 100%;
-  height: 100%;
-}
-
-body {
-  color: #333;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
   margin: 0;
-  box-sizing: border-box;
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
 
+/* ── Typography — matching Linear ───────────────── */
 h1 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 64px;
-  line-height: 110.18%;
-  color: #000000;
+  font-size: 2rem;          /* 32px — Linear's exact h1 */
+  font-weight: 600;
+  line-height: 1.125;       /* 36px — Linear's tight line-height */
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin: 0 0 12px;
 }
 
 h2 {
-  font-style: normal;
+  font-size: 1.375rem;      /* 22px — section headings */
   font-weight: 600;
-  font-size: 48px;
-  line-height: 110.18%;
-  color: #000000;
+  line-height: 1.25;
+  letter-spacing: -0.018em;
+  color: var(--text);
+  margin: 2.25rem 0 0.625rem;
 }
+
+h2:first-child { margin-top: 0; }
 
 h3 {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: var(--text-3);
+  margin: 0 0 4px;
 }
 
-h6 {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 16px;
-}
+h4 { font-size: 0.9375rem; font-weight: 600; color: var(--text); margin: 0; }
+h5 { font-size: 0.875rem;  font-weight: 600; color: var(--text); margin: 2px 0 0; }
+h6 { font-size: 0.75rem;   font-weight: 500; color: var(--text-2); margin: 0; }
 
 p {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 32px;
-  color: #000000;
+  font-size: 0.9375rem;     /* 15px — Linear's exact body size */
+  line-height: 1.6;         /* 24px at 15px — Linear's exact */
+  color: var(--text-body);  /* slightly muted, not pure white */
+  margin: 0 0 0.875rem;
 }
+
+p:last-child { margin-bottom: 0; }
 
 a {
-  color: rgb(0, 100, 200);
+  color: var(--accent-light);
   text-decoration: none;
+  transition: color 0.1s;
 }
 
-a:hover {
-  text-decoration: none;
+a:hover { color: var(--text); }
+
+em  { font-style: italic; }
+strong { font-weight: 600; color: var(--text); }
+
+ul, ol { padding-left: 1.25rem; margin: 0 0 1rem; }
+li { margin-bottom: 0.3rem; font-size: 0.9375rem; line-height: 1.6; color: var(--text-body); }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0;
 }
 
-label {
-  display: block;
-}
-
+/* ── Inputs ─────────────────────────────────────── */
 input, button, select, textarea {
   font-family: inherit;
   font-size: inherit;
-  box-sizing: border-box;
 }
 
-input:disabled {
-  color: #ccc;
-}
+input:disabled { color: var(--text-3); }
 
-input[type="range"] {
-  height: 0;
-}
-
+/* ── Buttons ────────────────────────────────────── */
 button {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+  display: inline-flex;
   align-items: center;
-  padding: 0 24px;
-  color: var(--content-default);
-  box-shadow: 4px 2px 15px rgba(0, 0, 31, 0.16);
-  border-radius: 4px;
-  outline: none;
-  border: none;
-  height: 46px;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 14px;
+  height: 34px;
+  border-radius: 7px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-raised);
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 500;
   cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s, border-color 0.1s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
 }
 
-button:disabled {
-  color: #999;
-}
+button:hover:not(:disabled) { background: var(--bg-subtle); }
+button:active:not(:disabled) { opacity: 0.82; }
+button:disabled { opacity: 0.38; cursor: not-allowed; }
 
-button:not(:disabled):active {
-  cursor: pointer;
-  background-color: #ddd;
-}
-
-button:focus {
-  border-color: rgba(142, 34, 195, 0.9);
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 button.primary {
-  color: var(--content-inverted);
-  background-color: var(--button-primary);
-  box-shadow: 4px 2px 15px rgba(154, 154, 167, 0.84);
-  border-radius: 4px;
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 2px 10px var(--accent-glow);
 }
 
-button.primary:hover {
-  cursor: pointer;
-  background-color: var(--button-primary);
+button.primary:hover:not(:disabled) {
+  filter: brightness(1.08);
+  box-shadow: 0 3px 16px var(--accent-glow);
 }
 
-button.primary:active {
-  cursor: pointer;
-  background-color: var(--button-primary);
+/* ── App shell ──────────────────────────────────── */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-button.secondary {
-  background: #FFFFFF;
-  box-shadow: 4px 2px 15px rgba(0, 0, 31, 0.16);
-  border-radius: 4px;
+.app-body {
+  display: flex;
+  flex: 1;
+  padding-top: var(--nav-h);
 }
 
-/* Primary Ripple Out Button Animation */
-@-webkit-keyframes hvr-ripple-out {
-  100% {
-    top: -6px;
-    right: -6px;
-    bottom: -6px;
-    left: -6px;
-    opacity: 0;
-  }
+/* Content area: margin past sidebar, centers children */
+.content-area {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@keyframes hvr-ripple-out {
-  100% {
-    top: -5px;
-    right: -5px;
-    bottom: -5px;
-    left: -5px;
-    opacity: 0;
-  }
+/* Shared page-content wrapper — every page uses this */
+.page-content {
+  width: 100%;
+  max-width: 680px;
+  padding: 52px 40px 88px;
 }
 
-.hvr-ripple-out {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  
-  position: relative;
+@media (max-width: 1024px) {
+  .page-content { padding: 40px 32px 72px; }
 }
 
-.hvr-ripple-out:before {
-  content: '';
-  position: absolute;
-  border: solid 6px var(--button-primary);
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  -webkit-animation-duration: 0.6s;
-  animation-duration: 0.6s;
-  border-radius: 4px;
+@media (max-width: 900px) {
+  .content-area  { margin-left: 0; }
+  .page-content  { padding: 32px 24px 64px; }
 }
 
-.hvr-ripple-out:hover:before,
-.hvr-ripple-out:focus:before,
-.hvr-ripple-out:active:before {
-  -webkit-animation-name: hvr-ripple-out;
-  animation-name: hvr-ripple-out;
-}
-
-
-/* Secondary Ripple Out Button Animation */
-@-webkit-keyframes hvr-ripple-out-sec {
-  100% {
-    top: -12px;
-    right: -12px;
-    bottom: -12px;
-    left: -12px;
-    opacity: 0;
-  }
-}
-
-@keyframes hvr-ripple-out-sec {
-  100% {
-    top: -12px;
-    right: -12px;
-    bottom: -12px;
-    left: -12px;
-    opacity: 0;
-  }
-}
-
-.hvr-ripple-out-sec {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  position: relative;
-}
-
-.hvr-ripple-out-sec:before {
-  content: '';
-  position: absolute;
-  border: solid 6px #fff;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  border-radius: 4px;
-}
-
-.hvr-ripple-out-sec:hover:before,
-.hvr-ripple-out-sec:focus:before,
-.hvr-ripple-out-sec:active:before {
-  -webkit-animation-name: hvr-ripple-out-sec;
-  animation-name: hvr-ripple-out-sec;
+@media (max-width: 640px) {
+  .page-content  { padding: 24px 16px 52px; }
 }

@@ -1,111 +1,103 @@
 <script>
   import { navigate } from 'svelte-routing';
-
-  import { currentStepIndex } from './stores.js';
+  import { currentStepIndex, currentPath } from './stores.js';
   import slugOrder from './slugOrder.js';
 
-  const navPrevious = () => {
-    $currentStepIndex--;
-    const newSlug = slugOrder[$currentStepIndex];
-    navigate(`/step/${newSlug}`);
-  }
+  const stepTitles = [
+    'Getting started',
+    'Run or donate?',
+    'Choosing a host',
+    'Install Tor',
+    "You're done!",
+  ];
 
-  const navNext = () => {
-    $currentStepIndex++;
-    const newSlug = slugOrder[$currentStepIndex];
-    navigate(`/step/${newSlug}`);
-  }
+  const navTo = (idx) => {
+    $currentStepIndex = idx;
+    const slug = slugOrder[idx];
+    currentPath.set(`/step/${slug}`);
+    navigate(`/step/${slug}`);
+  };
 </script>
 
 <style>
   .prev-next {
     display: flex;
-    flex-direction: row;
-    justify-contents: space-between;
-    min-width: 240px;
-    padding: var(--margin-left-default);
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-top: 32px;
+    margin-top: 40px;
+    border-top: 1px solid var(--border);
+    gap: 16px;
   }
 
-  .prev-ctn {
-    min-width: 130px;
+  .nav-side { display: flex; flex-direction: column; gap: 4px; max-width: 48%; }
+  .nav-side.right { align-items: flex-end; text-align: right; }
+
+  .nav-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--text-3);
   }
 
-  .next-ctn {
-    min-width: 110px;
-    margin-left: 10px;
+  .nav-btn {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--accent-light);
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    height: auto;
+    border-radius: 0;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.1s;
+    white-space: normal;
+    line-height: 1.4;
   }
 
-  @media (max-width: 640px) {
-    .prev-next {
-      padding: var(--margin-left-default-mobile);
-      max-width: 96%;
-    }
-    .next-ctn {
-      margin-left: 0;
-    }
-  }
+  .nav-side.right .nav-btn { text-align: right; }
+
+  .nav-btn:hover { color: var(--text); background: none; }
+  .placeholder { flex: 1; }
 </style>
 
 <svelte:window
-  on:popstate={(e) => {
-    // Pulling the stepName from the router isn't good enough because
-    // it's not reactive...
-    const maybeStepName = document.location.pathname
-          .slice('/step/'.length)
-          .match(/[\w\-]+/);
-    if (!maybeStepName || maybeStepName.length !== 1) {
-      return;
-    }
-    const stepName = maybeStepName[0];
-
-    // Re-sync URL displayed and currentStepIndex
-    const stepIndex = slugOrder.indexOf(stepName);
-    if (stepIndex !== -1) {
-      $currentStepIndex = stepIndex;
+  on:popstate={() => {
+    const m = document.location.pathname.slice('/step/'.length).match(/[\w-]+/);
+    if (m) {
+      const idx = slugOrder.indexOf(m[0]);
+      if (idx !== -1) $currentStepIndex = idx;
     }
   }}
-
   on:keydown={(e) => {
-    if (e.target.tagName !== 'BODY') {
-      // Don't trigger keyboard shortcuts in code <input>s
-      return;
-    }
-
-    if (e.altKey) {
-      // Don't trigger keyboard shortcuts on left/right if user is
-      // typing alt+left or alt+right
-      return;
-    }
-
-    if ($currentStepIndex > 0) {
-      if (['ArrowLeft'].indexOf(e.key) !== -1) {
-        navPrevious();
-        return;
-      }
-    }
-    if ($currentStepIndex < slugOrder.length - 1) {
-      if (['ArrowRight'].indexOf(e.key) !== -1) {
-        navNext();
-        return;
-      }
-    }
+    if (e.target.tagName !== 'BODY' || e.altKey) return;
+    if (e.key === 'ArrowLeft'  && $currentStepIndex > 0)                    navTo($currentStepIndex - 1);
+    if (e.key === 'ArrowRight' && $currentStepIndex < slugOrder.length - 1) navTo($currentStepIndex + 1);
   }}
 />
 
 <div class="prev-next">
-  <div class="prev-ctn">
-    {#if $currentStepIndex > 0}
-      <button class="secondary" on:click={navPrevious}>
-        Previous
+  {#if $currentStepIndex > 0}
+    <div class="nav-side left">
+      <span class="nav-label">← Previous</span>
+      <button class="nav-btn" on:click={() => navTo($currentStepIndex - 1)}>
+        {stepTitles[$currentStepIndex - 1]}
       </button>
-    {/if}
-  </div>
+    </div>
+  {:else}
+    <div class="placeholder"></div>
+  {/if}
 
-  <div class="next-ctn">
-    {#if $currentStepIndex < slugOrder.length - 1}
-      <button class="primary" on:click={navNext}>
-        Next
+  {#if $currentStepIndex < slugOrder.length - 1}
+    <div class="nav-side right">
+      <span class="nav-label">Next →</span>
+      <button class="nav-btn" on:click={() => navTo($currentStepIndex + 1)}>
+        {stepTitles[$currentStepIndex + 1]}
       </button>
-    {/if}
-  </div>
+    </div>
+  {:else}
+    <div class="placeholder"></div>
+  {/if}
 </div>
