@@ -1,9 +1,8 @@
 <script>
-  export let slug = '';
+  export let slug  = '';
   export let title = '';
 
   import { fly } from 'svelte/transition';
-
   import { currentStepIndex, previousStepIndices } from './stores.js';
   import slugOrder from './slugOrder.js';
 
@@ -17,65 +16,49 @@
     );
   }
 
-  const _forward = { x: 200, duration: 400 };
-  const _forwardMobile = { x: 20, duration: 400 };
-  const _back = { x: -200, duration: 400 };
-  const _backMobile = { x: -20, duration: 400 };
-
-  const transition = () => {
-    const mobile = _screenWidth() <= 640;
-
-    if ($currentStepIndex >= previousStepIndices.prev) {
-      if (mobile) {
-        return _forwardMobile;
-      } else {
-        return _forward;
-      }
-    } else {
-      if (mobile) {
-        return _backMobile;
-      } else {
-        return _back;
-      }
-    }
-  }
+  const transition = () =>
+    $currentStepIndex >= previousStepIndices.prev
+      ? { x: 32, duration: 260 }
+      : { x: -32, duration: 260 };
 </script>
 
 <style>
-  .step {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: left;
-
-    padding: var(--margin-left-default);
-    max-width: 800px;
+  .step-header {
+    margin-bottom: 28px;
   }
 
-  @media (max-width: 640px) {
-    .step {
-      padding: 15px;
-      max-width: 96%;
-    }
+  .step-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    display: block;
   }
 
-  .instructions {
-    padding: 30px 0;
-    min-height: 200px;
-    word-break: break-word;
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin: 0;
+    color: var(--text);
   }
+
+  .step-body { }
 </style>
 
 {#if slugOrder[$currentStepIndex] === slug}
-  <div class="step" in:fly={transition()}>
-    <h3 style="font-weight: 600;">
-      Step {$currentStepIndex + 1}: {title}
-    </h3>
+  <div in:fly={transition()}>
+    <div class="step-header">
+      <span class="step-eyebrow">
+        Step {slugOrder.indexOf(slug) + 1} of {slugOrder.length}
+      </span>
+      <h2>{@html title}</h2>
+    </div>
 
-    <div class="instructions">
-      <slot>
-        (User instructions go here)
-      </slot>
+    <div class="step-body">
+      <slot>(instructions go here)</slot>
     </div>
   </div>
 {/if}

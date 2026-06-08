@@ -1,162 +1,128 @@
 <script>
   import { onMount } from 'svelte';
-  import { currentStepIndex } from './stores.js';
+  import { currentStepIndex, currentPath } from './stores.js';
   import slugOrder from './slugOrder.js';
 
   export let stepName = '';
-  export let location;  // implicitly populated by router
+  export let location;
 
-  import Step from './Step.svelte';
-  import Code from './Code.svelte';
-  import ExternalLink from './ExternalLink.svelte';
-  import ExternalButton from './ExternalButton.svelte';
+  import Step                from './Step.svelte';
+  import ExternalLink        from './ExternalLink.svelte';
+  import ExternalButton      from './ExternalButton.svelte';
   import PrevNextStepButtons from './PrevNextStepButtons.svelte';
-  import { serverHosts, chooseRandomHosts } from './serverHosts.js';
+  import { serverHosts } from './serverHosts.js';
 
-  onMount(async () => {
-    if (stepName !== slugOrder[$currentStepIndex]) {
-      if ($currentStepIndex === 0) {
-        // User was linked to /step/some-specific-step, so take them there
-        for (let i = 0; i < slugOrder.length; i++) {
-          if (slugOrder[i] === stepName) {
-            $currentStepIndex = i;
-            break;
-          }
-        }
-      } else {
-        console.log('Something unexpected occurred');
-      }
+  onMount(() => {
+    currentPath.set(window.location.pathname);
+
+    if (stepName !== slugOrder[$currentStepIndex] && $currentStepIndex === 0) {
+      const idx = slugOrder.indexOf(stepName);
+      if (idx !== -1) $currentStepIndex = idx;
     }
 
-    // Useful on mobile when coming from homepage
     window.scrollTo(0, 0);
-  })
+  });
 
-  const displayHosts = (hosts) => {
-    const links = hosts.map(h => `* ${h.name}: <a href="${h.url}" target="_blank" rel="nofollow noreferrer noopener">${h.url}</a> (${h.country})`);
-    return links.join('<br />');
-  }
+  const displayHosts = (hosts) =>
+    hosts.map(h =>
+      `${h.name}: <a href="${h.url}" target="_blank" rel="nofollow noreferrer noopener">${h.url}</a> (${h.country})`
+    ).join('<br />');
 
-  const numSuggestedProviders = 3;
-
-  let viewAllHosts = false;
 </script>
 
 <style>
-  .all-steps {
+  .steps-wrap {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: left;
   }
 
-  p {
-    margin-bottom: 16px;
+  p { margin-bottom: 12px; }
+
+  .host-list {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    font-size: 0.875rem;
+    line-height: 2;
+    color: var(--text-body);
   }
 </style>
 
-<div class="all-steps">
-  <Step slug="intro" title="Introduction and Disclaimer">
-    <p>
-      Welcome to Run A Relay! Our goal is to make it as fast and easy
-      as possible to set up a new
-      <ExternalLink href="https://www.torproject.org/">Tor</ExternalLink>
-      relay, with special emphasis placed on helping you
-      choose a host/server provider based on
-      <ExternalLink href="https://trac.torproject.org/projects/tor/wiki/doc/GoodBadISPs">
-        crowdsourced information from The Tor Project's wiki
-      </ExternalLink>.
-    </p>
+<div class="page-content">
+  <div class="steps-wrap">
 
-    <p>
-      We've distilled it all down to actionable steps!
-    </p>
-  </Step>
-
-
-  <Step slug="relay-or-donate" title="Run or Donate?">
-    <p>
-      If you have less than $10/month that you can spend on a server
-      to run your relay, consider donating to one of these fine
-      projects instead!  This will make the Tor network more
-      efficient.
-    </p>
-
-    <p>
-      <ExternalLink href="https://torservers.net/donate.html">TorServers.net</ExternalLink>
-      &nbsp;|&nbsp;
-      <ExternalLink href="https://noisetor.net/">Noisetor</ExternalLink>
-      &nbsp;|&nbsp;
-      <ExternalLink href="https://emeraldonion.org/donate/">Emerald Onion</ExternalLink>
-    </p>
-  </Step>
-
-
-  <Step slug="choosing-a-host" title="Choosing A Host">
-    <p>
-      Server providers to consider (refresh for another
-      {numSuggestedProviders} randomly-chosen providers from our
-      curated list!):
-    </p>
-
-    {#if viewAllHosts}
+    <Step slug="intro" title="Introduction &amp; disclaimer">
       <p>
-        {@html displayHosts(serverHosts)}
+        Welcome to Run A Relay! Our goal is to make it as fast and easy
+        as possible to set up a new
+        <ExternalLink href="https://www.torproject.org/">Tor</ExternalLink>
+        relay, with special emphasis on helping you choose a host based on
+        <ExternalLink href="https://trac.torproject.org/projects/tor/wiki/doc/GoodBadISPs">
+          crowdsourced information from The Tor Project
+        </ExternalLink>.
       </p>
-    {:else}
+      <p>We've distilled it all down to actionable steps.</p>
+    </Step>
+
+
+    <Step slug="relay-or-donate" title="Run a relay or donate?">
       <p>
-        {@html displayHosts(chooseRandomHosts(numSuggestedProviders))}
+        If you have less than $10/month to spend on a server,
+        consider donating to one of these projects instead —
+        it will make the Tor network more efficient.
       </p>
       <p>
-        <button on:click={() => viewAllHosts = true}>View All</button>
+        <ExternalLink href="https://torservers.net/donate.html">TorServers.net</ExternalLink>
+        &nbsp;·&nbsp;
+        <ExternalLink href="https://noisetor.net/">Noisetor</ExternalLink>
+        &nbsp;·&nbsp;
+        <ExternalLink href="https://emeraldonion.org/donate/">Emerald Onion</ExternalLink>
       </p>
-    {/if}
-  </Step>
+    </Step>
 
 
-  <Step slug="install-tor-daemon" title="Install Tor Daemon & Configure Relay">
-    <p>
-      Use the impressively
-      awesome <ExternalLink href="https://github.com/nusenu/ansible-relayor">https://github.com/nusenu/ansible-relayor</ExternalLink>
-      to set up your relay on Debian, Ubuntu, FreeBSD, or OpenBSD!
-    </p>
-
-    <p>
-      (Non-Debian preferred!  Because diversity.)
-    </p>
-
-    <p>
-      Or set up without Ansible: <ExternalLink href="https://community.torproject.org/relay/setup/guard/">https://community.torproject.org/relay/setup/guard/</ExternalLink> .
-    </p>
-  </Step>
+    <Step slug="choosing-a-host" title="Choosing a host">
+      <p>Server providers to consider:</p>
+      <div class="host-list">{@html displayHosts(serverHosts)}</div>
+    </Step>
 
 
-  <!--
-    NOTE: When adding a new <Step>, remember to add its slug to ./slugOrder.js!
-  -->
+    <Step slug="install-tor-daemon" title="Install Tor &amp; configure your relay">
+      <p>
+        Use the impressively awesome
+        <ExternalLink href="https://github.com/nusenu/ansible-relayor">ansible-relayor</ExternalLink>
+        to set up your relay on Debian, Ubuntu, FreeBSD, or OpenBSD.
+        Non-Debian is preferred for network diversity.
+      </p>
+      <p>
+        Or set up without Ansible:
+        <ExternalLink href="https://community.torproject.org/relay/setup/guard/">
+          community.torproject.org/relay/setup/guard/
+        </ExternalLink>
+      </p>
+    </Step>
 
 
-  <Step slug="thank-you" title="Thank You!">
-    <p>
-      You're all set!  <em>Thank you so much</em> for taking action to
-      make the Tor network faster and more scalable!
-    </p>
+    <Step slug="thank-you" title="You're all set!">
+      <p>
+        <em>Thank you</em> for taking action to make the Tor network
+        faster and more scalable. Each new relay helps thousands of people
+        protect their privacy every day.
+      </p>
+      <p style="margin-top: 18px;">
+        <ExternalButton primary href="https://twitter.com/intent/tweet?text=I%20just%20spun%20up%20a%20new%20@TorProject%20relay!%20Simple%20instructions%20for%20running%20your%20own:%20https://RunARelay.org">
+          Share on Twitter
+        </ExternalButton>
+      </p>
+      <p style="margin-top: 20px;">
+        For more info:
+        <ExternalLink href="https://community.torproject.org/relay/">Tor Relay Guide ↗</ExternalLink>
+      </p>
+    </Step>
 
-    <p>
-      Each new relay can potentially help thousands of people protect
-      their privacy every single day.  The more the merrier!
-    </p>
-
-    <p style="margin-top: 25px; margin-bottom: 25px;">
-      <ExternalButton primary href="https://twitter.com/intent/tweet?text=I%20just%20spun%20up%20a%20new%20@TorProject%20relay!%20Simple%20instructions%20for%20running%20your%20own:%20https://RunARelay.org">Brag on Twitter</ExternalButton>
-    </p>
-
-    <p>
-      For more information, check out the official Tor Relay Guide:
-      <ExternalLink href="https://community.torproject.org/relay/">https://community.torproject.org/relay/</ExternalLink>
-      .
-    </p>
-  </Step>
-
-  <PrevNextStepButtons />
+    <PrevNextStepButtons />
+  </div>
 </div>
