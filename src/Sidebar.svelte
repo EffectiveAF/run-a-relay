@@ -31,7 +31,7 @@
     height: calc(100vh - var(--nav-h));
     overflow-y: auto;
     border-right: 1px solid var(--border);
-    padding: 16px 0 48px;
+    padding: 16px 0 8px 0;
     background: var(--bg);
     display: flex;
     flex-direction: column;
